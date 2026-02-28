@@ -1,0 +1,80 @@
+@use '../helpers/index' as *;
+
+.button {
+  height: 48px;
+  padding: 14px 24px;
+  border-radius: 44px;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+
+  &--white {
+    background-color: var(--color-white);
+
+    @include hover {
+      background-color: var(--color-gray-30);
+    }
+  }
+
+  &--yellow {
+    background-color: var(--color-yellow-500);
+
+    @include hover {
+      background-color: var(--color-yellow-200);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: rgba(163, 167, 171, 0.18);
+    color: var(--color-gray-80);
+  }
+}
+
+.slider__button {
+  @include square(fluid(48, 40));
+  @include flex-center(true);
+  color: var(--color-white);
+  background-color: var(--effect-glass);
+  border: var(--border-line);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  padding: 0;
+  cursor: pointer;
+
+  &--next {
+    &::before {
+      transform: rotate(180deg);
+    }
+  }
+
+  &--prev {
+    &::before {
+      transform: rotate(0deg);
+    }
+  }
+
+  &::before {
+    content: '';
+    background-color: currentColor;
+    mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M8.58311 12.448L14.767 6.26415C14.9029 6.12822 14.9757 5.96122 14.9854 5.76315C14.9951 5.56508 14.9223 5.38837 14.767 5.23302C14.6116 5.07767 14.4398 5 14.2514 5C14.0631 5 13.8912 5.07767 13.7358 5.23302L7.34517 11.6252C7.21797 11.7514 7.12865 11.881 7.07719 12.014C7.02573 12.147 7 12.2917 7 12.448C7 12.6043 7.02573 12.749 7.07719 12.882C7.12865 13.015 7.21797 13.1452 7.34517 13.2723L13.7358 19.663C13.8718 19.799 14.0388 19.8718 14.2368 19.8815C14.4349 19.8912 14.6116 19.8184 14.767 19.663C14.9223 19.5077 15 19.3358 15 19.1475C15 18.9591 14.9223 18.7872 14.767 18.6319L8.58311 12.448Z" fill="white"/> </svg>');
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    @include square(24px);
+  }
+
+  &-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.swiper-button-disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: rgba(163, 167, 171, 0.18);
+    color: var(--color-gray-80);
+  }
+}

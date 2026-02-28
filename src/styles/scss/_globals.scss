@@ -1,0 +1,108 @@
+@use 'helpers/index' as *;
+
+html {
+  &.is-lock {
+    overflow: hidden;
+  }
+}
+
+main {
+  flex-grow: 1;
+}
+
+body {
+  font-size: 18px;
+  font-family: var(--font-family);
+  color: var(--color-gray-30);
+  font-weight: 500;
+  line-height: 1.2;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  min-width: var(--mobile-width);
+  background-color: var(--color-gray-100);
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3 {
+  color: var(--color-white);
+}
+
+h1, .h1,
+h3, .h3,
+h4, .h4, {
+  font-weight: 500;
+}
+
+h1, .h1 {
+  @include fluid-text(72, 38);
+}
+
+h2, .h2 {
+  @include fluid-text(48, 32);
+  font-weight: 600;
+}
+
+h3, .h3 {
+  @include fluid-text(32, 24);
+}
+
+h4, .h4 {
+  @include fluid-text(24, 18);
+  color: var(--color-gray-90);
+}
+
+h5, .h5 {
+  font-size: 16px;
+}
+
+section {
+  padding-top: var(--section-padding-y);
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 64px;
+  }
+}
+
+.glass-effect {
+  background-color: var(--effect-glass);
+  backdrop-filter: blur(12px);
+  border-radius: var(--border-radius);
+}
+
+[id] {
+  scroll-margin-top: 150px;
+}
+
+a,
+button,
+label,
+input,
+textarea,
+select,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  color: inherit;
+
+  @include hover {
+    color: var(--color-gray-30);
+  }
+
+  &[class] {
+    text-decoration: none;
+  }
+}
+
+:focus-visible {
+  @include focus-visible;
+}

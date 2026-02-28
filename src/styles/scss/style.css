@@ -199,14 +199,14 @@ svg * {
 }
 @font-face {
   font-family: "Urbanist";
-  src: url("../../public/fonts/Urbanist-Medium.woff2") format("woff2");
+  src: url("../../../public/fonts/Urbanist-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Urbanist";
-  src: url("../../public/fonts/Urbanist-SemiBold.woff2") format("woff2");
+  src: url("../../../public/fonts/Urbanist-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -892,9 +892,6 @@ a[class] {
 .about-us__content--medium.expanded .about-us__content-info#text p {
   display: block;
   margin-bottom: 20px;
-}
-.about-us__content--medium.expanded .about-us__content-info#text p:last-child {
-  margin-bottom: 0;
 }
 @media (width <= 1023px) {
   .about-us__content--medium.expanded .about-us__content-gallery {

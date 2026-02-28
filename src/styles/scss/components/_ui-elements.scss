@@ -1,0 +1,33 @@
+@use '../helpers/index' as *;
+
+.section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 48px;
+
+  @include tablet {
+    flex-direction: column-reverse;
+  }
+
+  &-tag {
+    text-transform: uppercase;
+    color: var(--color-yellow-500);
+    line-height: 1.6;
+  }
+
+  &:has(.section__header-description) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+
+    .section__header-tag {
+      justify-self: end;
+    }
+  }
+
+  &-description {
+    max-width: 317px;
+  }
+}
+

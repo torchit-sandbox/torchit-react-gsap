@@ -1,0 +1,118 @@
+@use '../helpers/index' as *;
+
+.header {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 5;
+
+  &.open {
+    .header__inner {
+      backdrop-filter: none;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 48px;
+    padding: 8px 8px 8px 24px;
+    height: 100%;
+    border-radius: 100px;
+
+    @include tablet {
+      justify-content: space-between;
+      margin-inline: 8px;
+    }
+  }
+
+  &__logo {
+    margin-right: auto;
+    z-index: 5;
+  }
+
+  &__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 48px;
+      text-transform: uppercase;
+      color: var(--color-white);
+      font-size: 14px;
+
+      @include tablet {
+        flex-direction: column;
+        align-items: start;
+      }
+    }
+  }
+
+  &__overlay-menu-dialog {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    padding-top: 80px;
+    padding-inline: 12px;
+
+    flex-direction: column;
+    justify-content: end;
+    row-gap: 24px;
+    transition-duration: var(--transition-duration-longer);
+    transition-behavior: allow-discrete;
+    background-color: var(--color-gray-70);
+
+    &[open] {
+      display: flex;
+
+      @starting-style {
+        opacity: 0;
+        translate: 80%;
+      }
+    }
+
+    &:not([open]) {
+      opacity: 0;
+      translate: 80%;
+    }
+
+    @include tablet-above {
+      display: contents;
+    }
+  }
+
+  &__burger-button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    height: 40px;
+
+    &-icon--close {
+      display: none;
+    }
+
+    &.is-active {
+      .header__burger-button-icon--open {
+        display: none;
+      }
+
+      .header__burger-button-icon--close {
+        display: inline;
+      }
+    }
+  }
+}
+

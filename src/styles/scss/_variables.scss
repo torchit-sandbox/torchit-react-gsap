@@ -1,0 +1,41 @@
+@use 'helpers' as *;
+
+:root {
+  --font-family: 'Urbanist', sans-serif;;
+
+  --color-yellow-100: #FDF4CC;
+  --color-yellow-200: #FAE999;
+  --color-yellow-300: #F8DF67;
+  --color-yellow-400: #F5D434;
+  --color-yellow-500: #F3C901;
+
+  --color-white: #FFFFFF;
+  --color-gray-30: #C7D0D6;
+  --color-gray-70: #6F7E8F;
+  --color-gray-80: #35424F;
+  --color-gray-90: #171C24;
+  --color-gray-100: #080A0D;
+
+  --color-error: #F30105;
+  --color-info: #0105F3;
+  --color-warning: #F3B201;
+  --color-success: #52F301;
+
+  --effect-glass: rgba(163, 167, 171, 0.18);
+
+  --border-radius: 24px;
+  --border-line: 1px solid rgba(156, 161, 167, 0.24);
+
+  --container-width: #{$container-desktop-width}px;
+  --container-padding-x: #{fluid(64, 16)};
+
+  --container-big-width: #{$container-big-desktop-width}px;
+  --container-big-padding-x: #{fluid(16, 0)};
+
+  --mobile-width: #{$container-mobile-width}px !important;
+
+  --section-padding-y: #{fluid(200, 56)};
+
+  --transition-duration: 0.2s;
+  --transition-duration-longer: 0.4s;
+}

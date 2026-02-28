@@ -1,0 +1,130 @@
+@use '../helpers/index' as *;
+
+.hero {
+  --min-height: 682px;
+
+  margin-top: 16px;
+  padding: 0;
+  margin-bottom: 40px;
+
+  @include tablet-s {
+    --min-height: 400px;
+  }
+
+  &__inner {
+    position: relative;
+    min-height: var(--min-height);
+    margin-inline: 16px;
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    z-index: -1;
+    filter: brightness(70%);
+    opacity: 0;
+    transition-property: opacity;
+    transition-timing-function: ease-in-out;
+    transition-duration: var(--transition-duration);
+
+    &.active {
+      opacity: 1;
+    }
+
+    &-link {
+      position: absolute;
+      inset: 0;
+      display: block;
+    }
+  }
+
+  &__content {
+    padding: 144px 48px 32px 48px;
+    min-height: var(--min-height);
+
+    @include tablet-s {
+      padding: 110px 24px 16px 24px;
+
+    }
+  }
+
+  &__info {
+    max-width: 514px;
+
+    display: grid;
+    gap: 12px;
+
+    color: var(--color-white);
+  }
+
+  &__tabs {
+    &-list {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &-item {
+      position: relative;
+      padding: 16px;
+      width: 100%;
+      height: 80px;
+      cursor: pointer;
+      color: var(--color-white);
+      background-image: linear-gradient(to right, var(--color-white) 0%, transparent 0%);
+      background-repeat: no-repeat;
+      transition: background-color 0.3s ease;
+
+      @include tablet-s {
+        height: 4px;
+        padding: 0;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: -30px;
+          left: 0;
+          width: 100%;
+          height: 50px;
+          padding: 20px;
+          background-color: transparent;
+        }
+      }
+
+      & span {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        @include tablet-s {
+          display: none;
+        }
+
+        &::after {
+          content: '';
+          background-color: var(--color-white);;
+          border-radius: 50%;
+          @include square(8px);
+          margin: 8px;
+        }
+      }
+      &.active {
+        color: var(--color-gray-100);
+      }
+    }
+  }
+
+  &-slider__button-wrapper {
+    padding-top: 106px;
+    padding-bottom: 164px;
+
+    @include tablet-s {
+      padding-bottom: 184px;
+    }
+  }
+}

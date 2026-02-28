@@ -1,0 +1,94 @@
+@use '../helpers/index' as *;
+
+.reviews {
+  &__list {
+    max-width: 1920px;
+    display: flex;
+    gap: 56px;
+    align-items: flex-start;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .review-card {
+    max-width: 498px;
+    flex: 0 0 auto;
+    width: 100%;
+    border: var(--border-line);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: 0 4px 10px 0 rgba(82, 82, 82, 0.10);
+    display: grid;
+    justify-items: start;
+    gap: 24px;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    &.expanded {
+      .review-card__quote {
+        color: var(--color-yellow-500);
+      }
+
+      .review-card__text {
+        display: block;
+        -webkit-line-clamp: none;
+      }
+    }
+
+    &__quote {
+      @include flex-center(true);
+      color: var(--color-white);
+
+      &::before {
+        content: '';
+        background-color: currentColor;
+        mask-image: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" fill="none"><path d="M25.2 21.5999L28.7999 14.3999H21.6C13.644 14.3999 7.19995 24.4439 7.19995 32.3999V57.5999H32.4V32.3999H18C18 21.5999 25.2 21.5999 25.2 21.5999ZM50.3999 32.3999C50.3999 21.5999 57.5999 21.5999 57.5999 21.5999L61.2 14.3999H54C46.0439 14.3999 39.5999 24.4439 39.5999 32.3999V57.5999H64.7999V32.3999H50.3999Z" fill="white"/> </svg>');
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+        @include square(72px);
+      }
+    }
+
+    &__text {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      line-height: 1.6;
+    }
+
+    &__author {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+
+      &-photo {
+        border-radius: 120px;
+      }
+
+      &-info {
+        display: grid;
+        gap: 4px;
+      }
+
+      &-name {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      &-role {
+        color: var(--color-gray-70);
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@use '../helpers/index' as *;
+
+.partners-slider {
+  &-track {
+    overflow: hidden;
+    max-width: 1920px;
+
+    display: flex;
+    padding: 32px 80px;
+    align-items: center;
+
+    border-top: var(--border-line);
+    border-bottom: var(--border-line);
+    background-color: var(--color-gray-90);
+    backdrop-filter: blur(50px);
+  }
+
+  &-item {
+    flex-shrink: 0;
+    margin-right: 80px;
+
+    img {
+      display: block;
+      height: 32px;
+      max-width: 130px;
+      object-fit: contain;
+    }
+  }
+}

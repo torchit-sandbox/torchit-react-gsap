@@ -1,0 +1,30 @@
+@use 'helpers/normalize.css';
+@use 'fonts';
+@use 'variables';
+@use 'helpers/utils';
+@use 'globals';
+
+@use 'components/buttons';
+@use 'components/ui-elements';
+
+@use 'sections/header';
+@use 'sections/footer';
+@use 'sections/hero';
+@use 'sections/about-us';
+@use 'sections/services';
+@use 'sections/process';
+@use 'sections/reviews';
+@use 'sections/partners';
+
+//section {
+//  display: none;
+//}
+//
+//.active {
+//  display: block !important;
+//}
+//
+//footer {
+//  display: none;
+//}
+
