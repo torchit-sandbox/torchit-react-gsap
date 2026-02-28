@@ -15,6 +15,7 @@ export function Header() {
         duration: 0.8,
         ease: 'power3.out',
         delay: 0.35,
+        clearProps: 'transform'
       });
     }, headerRef);
 
