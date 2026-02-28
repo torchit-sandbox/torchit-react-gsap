@@ -12,12 +12,12 @@ export const ABOUT_INTRO =
 
 export const ABOUT_PARAGRAPHS = [
   "At TorchIT, we believe great digital products are born at the intersection of logic and emotion. We're a team of designers, developers, and strategists who value clarity, empathy, and collaboration above all else.",
-  
+
   "Our journey started with a simple goal — to create products that don't just look good, but truly work for the people who use them. Since then, we've helped startups, growing businesses, and global teams build digital tools that empower users and deliver real results.",
-  
+
   "We approach every project with curiosity and care. Before writing a single line of code, we take time to understand the problem, research the audience, and shape the right solution together with our clients. Our process is transparent, iterative, and focused on long-term success — not just quick wins.",
-  
-  "Today, we continue to evolve — learning from every project, every collaboration, and every user insight. For us, design and development aren't just services — they're ways to make technology feel more human.",
+
+  "Today, we continue to evolve — learning from every project, every collaboration, and every user insight. For us, design and development aren't just services — they're ways to make technology feel more human.Before writing a single line of code, we take time to understand the problem, research the audience, and shape the right solution together with the client.",
 ];
 
 export const SERVICES = [
