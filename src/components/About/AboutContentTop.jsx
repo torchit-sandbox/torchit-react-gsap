@@ -12,24 +12,14 @@ export function AboutContentTop({ isExpanded, onPreviewClick, onVideoClick }) {
     if (isExpanded === prevExpanded.current) return;
     prevExpanded.current = isExpanded;
 
+    const duration = 0.4;
+
     if (isExpanded) {
-      // Fade out preview, fade in video with scale
-      gsap.to(previewRef.current, { opacity: 0, scale: 0.95, duration: 0.35, ease: 'power1.in' });
-      gsap.fromTo(
-        videoRef.current,
-        { opacity: 0, scale: 1.04, display: 'block' },
-        { opacity: 1, scale: 1, duration: 0.7, ease: 'power2.out', delay: 0.2 }
-      );
+      gsap.to(previewRef.current, { autoAlpha: 0, duration });
+      gsap.to(videoRef.current, { autoAlpha: 1, duration });
     } else {
-      gsap.to(videoRef.current, {
-        opacity: 0, scale: 0.97, duration: 0.35, ease: 'power1.in',
-        onComplete: () => gsap.set(videoRef.current, { display: 'none' }),
-      });
-      gsap.fromTo(
-        previewRef.current,
-        { opacity: 0, scale: 1.03 },
-        { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out', delay: 0.2 }
-      );
+      gsap.to(videoRef.current, { autoAlpha: 0, duration });
+      gsap.to(previewRef.current, { autoAlpha: 1, duration });
     }
   }, [isExpanded]);
 
@@ -58,7 +48,7 @@ export function AboutContentTop({ isExpanded, onPreviewClick, onVideoClick }) {
         height="600"
         loading="eager"
         onClick={onVideoClick}
-        style={{ cursor: 'pointer', display: 'none', opacity: 0 }}
+        style={{ cursor: 'pointer', opacity: 0, visibility: 'hidden' }}
       />
     </div>
   );
