@@ -1117,6 +1117,9 @@ a[class] {
   border: var(--border-line);
   background-color: transparent;
 }
+.process .task-card {
+  cursor: grab;
+}
 .process .task-card__header {
   display: flex;
   align-items: center;

@@ -70,6 +70,8 @@
   }
 
   .task-card {
+    cursor: grab;
+
     &__header {
       display: flex;
       align-items: center;

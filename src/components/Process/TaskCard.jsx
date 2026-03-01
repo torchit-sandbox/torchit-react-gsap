@@ -6,7 +6,6 @@ export function TaskCard({ number, title, description }) {
 
   const onMouseEnter = () => {
     gsap.to(cardRef.current, {
-      backgroundColor: 'rgba(163,167,171,0.30)',
       y: -3,
       duration: 0.25,
       ease: 'power1.out',
@@ -20,7 +19,6 @@ export function TaskCard({ number, title, description }) {
 
   const onMouseLeave = () => {
     gsap.to(cardRef.current, {
-      backgroundColor: 'rgba(163,167,171,0.18)',
       y: 0,
       duration: 0.3,
       ease: 'power1.inOut',
