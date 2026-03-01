@@ -58,7 +58,7 @@
         background-color: rgba(163, 167, 171, 0.18);
 
         &--empty {
-          min-height: 181px;
+          min-height: 205px;
           @include flex-center(true);
           font-weight: 700;
           color: var(--color-gray-80);

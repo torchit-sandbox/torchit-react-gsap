@@ -30,10 +30,23 @@ export function TaskCard({ number, title, description }) {
     });
   };
 
+  const handleDragStart = (e) => {
+    e.dataTransfer.setData('taskNumber', number);
+    e.dataTransfer.effectAllowed = 'move';
+    gsap.to(cardRef.current, { opacity: 0.5, scale: 0.97, duration: 0.1 });
+  };
+
+  const handleDragEnd = () => {
+    gsap.to(cardRef.current, { opacity: 1, scale: 1, duration: 0.2 });
+  };
+
   return (
     <article
       ref={cardRef}
       className="task-card"
+      draggable
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

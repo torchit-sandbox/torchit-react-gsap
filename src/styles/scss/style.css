@@ -1108,7 +1108,7 @@ a[class] {
   background-color: rgba(163, 167, 171, 0.18);
 }
 .process .board__column-item--empty {
-  min-height: 181px;
+  min-height: 205px;
   display: inline-flex;
   justify-content: center;
   align-items: center;

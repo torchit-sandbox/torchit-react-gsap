@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { PROCESS_COLUMNS } from '../../data';
-import { SectionHeader } from '../UI';
-import { BoardColumn } from './BoardColumn';
+import {useState, useRef, useEffect} from 'react';
+import {gsap} from 'gsap';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import {PROCESS_COLUMNS} from '../../data';
+import {SectionHeader} from '../UI';
+import {BoardColumn} from './BoardColumn';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +20,11 @@ export function Process() {
         opacity: 0,
         duration: 0.9,
         ease: 'power3.out',
-        scrollTrigger: { trigger: '.process .section__header', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.process .section__header',
+          start: 'top 85%',
+          once: true
+        },
       });
       gsap.from('.process .section__header-tag', {
         x: 30,
@@ -28,7 +32,11 @@ export function Process() {
         duration: 0.65,
         ease: 'power2.out',
         delay: 0.15,
-        scrollTrigger: { trigger: '.process .section__header', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.process .section__header',
+          start: 'top 85%',
+          once: true
+        },
       });
 
       // Reset button
@@ -37,7 +45,11 @@ export function Process() {
         opacity: 0,
         duration: 0.5,
         ease: 'power2.out',
-        scrollTrigger: { trigger: '.process__reset', start: 'top 90%', once: true },
+        scrollTrigger: {
+          trigger: '.process__reset',
+          start: 'top 90%',
+          once: true
+        },
       });
 
       // Board columns cascade in
@@ -47,7 +59,11 @@ export function Process() {
         duration: 0.75,
         ease: 'power3.out',
         stagger: 0.15,
-        scrollTrigger: { trigger: '.board__columns', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.board__columns',
+          start: 'top 85%',
+          once: true
+        },
       });
 
       // Task cards stagger within columns
@@ -58,12 +74,36 @@ export function Process() {
         ease: 'power2.out',
         stagger: 0.08,
         delay: 0.35,
-        scrollTrigger: { trigger: '.board__columns', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.board__columns',
+          start: 'top 85%',
+          once: true
+        },
       });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
+
+  const handleDrop = (taskNumber, targetColumnId) => {
+    setColumns(prev => {
+      let movedTask = null;
+      const updated = prev.map(col => {
+        const task = col.tasks.find(t => String(t.number) === String(taskNumber));
+        if (task) movedTask = task;
+        return { ...col, tasks: col.tasks.filter(t => String(t.number) !== String(taskNumber)) };
+      });
+
+      if (!movedTask) return prev;
+
+      return updated.map(col =>
+        col.id === targetColumnId
+          ? { ...col, tasks: [...col.tasks, movedTask] }
+          : col
+      );
+    });
+    setIsDirty(true);
+  };
 
   const handleReset = () => {
     setColumns(PROCESS_COLUMNS);
@@ -71,7 +111,11 @@ export function Process() {
   };
 
   return (
-    <section ref={sectionRef} className="process container" aria-labelledby="process-title">
+    <section
+      ref={sectionRef}
+      className="process container"
+      aria-labelledby="process-title"
+    >
       <SectionHeader
         id="process-title"
         title={<>Clear process.<br />Predictable results.</>}
@@ -89,7 +133,13 @@ export function Process() {
 
       <ul className="board__columns">
         {columns.map((col) => (
-          <BoardColumn key={col.id} title={col.title} tasks={col.tasks} />
+          <BoardColumn
+            key={col.id}
+            id={col.id}
+            title={col.title}
+            tasks={col.tasks}
+            onDrop={handleDrop}
+          />
         ))}
       </ul>
     </section>
