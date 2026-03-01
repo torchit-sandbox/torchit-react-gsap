@@ -10,33 +10,44 @@ export function Footer() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Устанавливаем начальное состояние явно
+      gsap.set('.footer__logo', { y: 30, opacity: 0 });
+      gsap.set('.footer__contacts-item, .footer__contacts', { y: 20, opacity: 0 });
+      gsap.set('.footer__menu-item', { y: 20, opacity: 0 });
+      gsap.set('.footer__bottom', { y: 16, opacity: 0 });
+
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: footerRef.current, start: 'top 90%', once: true },
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: 'top 90%',
+          once: true,
+          invalidateOnRefresh: true,
+        },
       });
 
-      tl.from('.footer__logo', {
-        y: 30,
-        opacity: 0,
+      tl.to('.footer__logo', {
+        y: 0,
+        opacity: 1,
         duration: 0.65,
         ease: 'power2.out',
       })
-        .from('.footer__contacts-item, .footer__contacts', {
-          y: 20,
-          opacity: 0,
+        .to('.footer__contacts-item, .footer__contacts', {
+          y: 0,
+          opacity: 1,
           duration: 0.5,
           ease: 'power2.out',
           stagger: 0.1,
         }, '-=0.35')
-        .from('.footer__menu-item', {
-          y: 20,
-          opacity: 0,
+        .to('.footer__menu-item', {
+          y: 0,
+          opacity: 1,
           duration: 0.45,
           ease: 'power2.out',
           stagger: 0.07,
         }, '-=0.4')
-        .from('.footer__bottom', {
-          y: 16,
-          opacity: 0,
+        .to('.footer__bottom', {
+          y: 0,
+          opacity: 1,
           duration: 0.5,
           ease: 'power2.out',
         }, '-=0.25');
