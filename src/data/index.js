@@ -119,6 +119,19 @@ export const REVIEWS = [
   },
 ];
 
-export const FOOTER_MENU = ['services', 'about', 'contacts', 'reviews'];
+export const PARTNERS = [
+  {
+    id: 1,
+    image: '/images/partners/partner-1.svg',
+  },
+  {
+    id: 2,
+    image: '/images/partners/partner-2.svg',
+  },
+  {
+    id: 3,
+    image: '/images/partners/partner-3.svg',
+  },
+];
 
-export const PARTNERS_COUNT = 11;
+export const FOOTER_MENU = ['services', 'about', 'contacts', 'reviews'];
