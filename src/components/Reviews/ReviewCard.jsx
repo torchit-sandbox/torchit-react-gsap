@@ -18,7 +18,7 @@ export function ReviewCard({ text, author, role, photo }) {
 
   const onMouseEnter = () => {
     gsap.to(cardRef.current, {
-      y: -5,
+      y: 5,
       boxShadow: '0 16px 40px rgba(0,0,0,0.3)',
       duration: 0.3,
       ease: 'power2.out',

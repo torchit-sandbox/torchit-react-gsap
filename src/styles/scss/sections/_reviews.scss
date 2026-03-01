@@ -1,6 +1,8 @@
 @use '../helpers/index' as *;
 
 .reviews {
+  margin-bottom: -30px;
+
   &__list {
     max-width: 1920px;
     display: flex;
@@ -10,6 +12,7 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     cursor: grab;
+    padding-bottom: 30px;
 
     &::-webkit-scrollbar {
       display: none;

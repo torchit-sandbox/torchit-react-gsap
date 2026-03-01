@@ -1143,6 +1143,9 @@ a[class] {
   line-height: 1.5;
 }
 
+.reviews {
+  margin-bottom: -30px;
+}
 .reviews__list {
   max-width: 1920px;
   display: flex;
@@ -1152,6 +1155,7 @@ a[class] {
   scrollbar-width: none;
   -ms-overflow-style: none;
   cursor: grab;
+  padding-bottom: 30px;
 }
 .reviews__list::-webkit-scrollbar {
   display: none;
