@@ -7,7 +7,6 @@ export function ServiceCard({ image, title, description }) {
   const onMouseEnter = () => {
     gsap.to(cardRef.current, {
       y: -6,
-      boxShadow: '0 12px 32px rgba(0,0,0,0.35)',
       duration: 0.3,
       ease: 'power2.out',
     });
@@ -21,7 +20,6 @@ export function ServiceCard({ image, title, description }) {
   const onMouseLeave = () => {
     gsap.to(cardRef.current, {
       y: 0,
-      boxShadow: '0 4px 10px rgba(82,82,82,0.1)',
       duration: 0.35,
       ease: 'power2.inOut',
     });

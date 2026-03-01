@@ -997,11 +997,13 @@ a[class] {
 }
 .services__item {
   height: auto !important;
-  padding: 32px;
   border-radius: var(--border-radius);
   border: var(--border-line);
   background-color: var(--color-gray-90);
   box-shadow: 0 4px 10px 0 rgba(82, 82, 82, 0.1);
+}
+.services .service-card {
+  padding: clamp(1rem, 0.5997865528rem + 1.7075773746vw, 2rem);
 }
 .services .service-card__image {
   margin-bottom: 24px;
