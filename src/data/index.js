@@ -132,6 +132,30 @@ export const PARTNERS = [
     id: 3,
     image: '/images/partners/partner-3.svg',
   },
+  {
+    id: 4,
+    image: '/images/partners/partner-1.svg',
+  },
+  {
+    id: 5,
+    image: '/images/partners/partner-2.svg',
+  },
+  {
+    id: 6,
+    image: '/images/partners/partner-3.svg',
+  },
+  {
+    id: 7,
+    image: '/images/partners/partner-1.svg',
+  },
+  {
+    id: 8,
+    image: '/images/partners/partner-2.svg',
+  },
+  {
+    id: 9,
+    image: '/images/partners/partner-3.svg',
+  },
 ];
 
 export const FOOTER_MENU = ['services', 'about', 'contacts', 'reviews'];

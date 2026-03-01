@@ -1226,26 +1226,27 @@ a[class] {
   color: var(--color-gray-70);
 }
 
-.partners-slider-track {
+.partners-slider {
   overflow: hidden;
-  max-width: 1920px;
-  display: flex;
-  padding: 32px 80px;
-  align-items: center;
+  width: 100%;
   border-top: var(--border-line);
   border-bottom: var(--border-line);
   background-color: var(--color-gray-90);
   backdrop-filter: blur(50px);
+  padding: 32px;
+}
+.partners-slider-track {
+  display: flex;
+  align-items: center;
 }
 .partners-slider-item {
   flex-shrink: 0;
   margin-right: 80px;
 }
 .partners-slider-item img {
-  display: block;
-  height: 32px;
-  max-width: 130px;
+  height: 20px;
   object-fit: contain;
+  display: block;
 }
 
 /*# sourceMappingURL=style.css.map */
