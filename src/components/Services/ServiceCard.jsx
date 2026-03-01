@@ -9,6 +9,7 @@ export function ServiceCard({ image, title, description }) {
       y: -6,
       duration: 0.3,
       ease: 'power2.out',
+
     });
     gsap.to(cardRef.current.querySelector('.service-card__image'), {
       scale: 1.04,
