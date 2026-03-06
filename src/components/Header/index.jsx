@@ -2,9 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { NavMenu } from './NavMenu';
 import { BurgerButton } from './BurgerButton';
+import {ContactModal} from "../СontactModal";
+
+
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const headerRef = useRef(null);
 
   useEffect(() => {
@@ -23,6 +27,11 @@ export function Header() {
   }, []);
 
   const toggle = () => setMenuOpen((v) => !v);
+
+  const handleOpenModal = () => {
+    setMenuOpen(false);
+    setModalOpen(true);
+  };
 
   useEffect(() => {
     document.documentElement.classList.toggle('is-lock', menuOpen);
@@ -45,9 +54,13 @@ export function Header() {
           />
         </a>
 
-        <NavMenu isOpen={menuOpen} />
+        <NavMenu isOpen={menuOpen} onContactClick={handleOpenModal} />
         <BurgerButton isActive={menuOpen} onClick={toggle} />
       </div>
+
+      {modalOpen && (
+        <ContactModal onClose={() => setModalOpen(false)} />
+      )}
     </header>
   );
 }
