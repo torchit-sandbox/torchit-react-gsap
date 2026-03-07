@@ -43,13 +43,28 @@
   padding: 0;
   cursor: pointer;
 
+  @include mobile-s {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    z-index: 5;
+  }
+
   &--next {
+    @include mobile-s {
+      right: -19px;
+    }
+
     &::before {
       transform: rotate(180deg);
     }
   }
 
   &--prev {
+    @include mobile-s {
+      left: -19px;
+    }
+
     &::before {
       transform: rotate(0deg);
     }
@@ -74,7 +89,7 @@
   &.swiper-button-disabled {
     cursor: not-allowed;
     pointer-events: none;
-    background-color: rgba(163, 167, 171, 0.18);
+    background-color: var(--effect-glass);
     color: var(--color-gray-80);
   }
 }

@@ -9,7 +9,7 @@ export function BurgerButton({ isActive, onClick }) {
     >
       <img
         className="header__burger-button-icon header__burger-button-icon--open"
-        src="/images/svg/burger-button.svg"
+        src="/images/svg/burger-button.png"
         alt="Open menu"
         width="40"
         height="40"

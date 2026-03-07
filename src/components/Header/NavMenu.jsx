@@ -2,7 +2,7 @@ import { NAV_LINKS } from '../../data';
 
 export function NavMenu({ isOpen, onContactClick }) {
   return (
-    <dialog className="header__overlay-menu-dialog" open={isOpen}>
+    <dialog className="header__overlay-menu-dialog container" open={isOpen}>
       <nav className="header__menu" role="navigation" aria-label="Main menu">
         <ul className="header__menu-list">
           {NAV_LINKS.map((link) => (

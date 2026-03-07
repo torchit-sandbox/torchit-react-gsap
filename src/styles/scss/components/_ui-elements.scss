@@ -28,6 +28,11 @@
 
   &-description {
     max-width: 317px;
+
+    @include tablet-s {
+      grid-column: 1 / -1;
+      max-width: none;
+    }
   }
 }
 

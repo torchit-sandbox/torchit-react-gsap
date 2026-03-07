@@ -8,6 +8,7 @@ html {
 
 main {
   flex-grow: 1;
+  overflow-x: clip;
 }
 
 body {

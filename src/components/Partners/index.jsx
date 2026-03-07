@@ -15,7 +15,7 @@ export function Partners() {
 
     gsap.to(track, {
       x: -totalWidth,
-      duration: 50,
+      duration: 15,
       ease: 'linear',
       repeat: -1,
     });
