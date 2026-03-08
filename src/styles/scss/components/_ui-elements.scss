@@ -21,16 +21,25 @@
     grid-template-columns: 1fr 1fr;
     gap: 24px;
 
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
     .section__header-tag {
       justify-self: end;
+
+      @include tablet {
+        order: -1;
+      }
     }
   }
 
   &-description {
     max-width: 317px;
 
-    @include tablet-s {
-      grid-column: 1 / -1;
+    @include tablet {
       max-width: none;
     }
   }
