@@ -922,8 +922,11 @@ a[class] {
   display: block;
 }
 .hero__content {
+  position: relative;
+  z-index: 2;
   padding: 144px 48px 32px 48px;
   min-height: var(--min-height);
+  pointer-events: none;
 }
 @media (width <= 899px) {
   .hero__content {
@@ -941,6 +944,7 @@ a[class] {
   gap: 16px;
   align-items: center;
   justify-content: space-between;
+  pointer-events: auto;
 }
 .hero__tabs-item {
   position: relative;
@@ -993,11 +997,15 @@ a[class] {
 .hero-slider__button-wrapper {
   padding-top: 106px;
   padding-bottom: 164px;
+  pointer-events: none;
 }
 @media (width <= 899px) {
   .hero-slider__button-wrapper {
     padding-bottom: 184px;
   }
+}
+.hero-slider__button-wrapper .slider__button {
+  pointer-events: auto;
 }
 
 .about-us__wrapper {
