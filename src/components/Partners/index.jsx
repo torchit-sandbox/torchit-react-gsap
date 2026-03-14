@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
-import { PARTNERS } from '../../data';
-import { gsap } from 'gsap';
+import {useEffect, useRef} from 'react';
+import {PARTNERS} from '../../data';
+import {gsap} from 'gsap';
 
 export function Partners() {
   const trackRef = useRef(null);
@@ -22,12 +22,26 @@ export function Partners() {
   }, []);
 
   return (
-    <section className="partners">
+    <section
+      className="partners"
+      id="partners"
+    >
       <div className="partners-slider">
-        <div className="partners-slider-track" ref={trackRef}>
-          {PARTNERS.map(({ id, image }) => (
-            <div key={id} className="partners-slider-item">
-              <img src={image} alt="" height="32" loading="lazy" />
+        <div
+          className="partners-slider-track"
+          ref={trackRef}
+        >
+          {PARTNERS.map(({id, image}) => (
+            <div
+              key={id}
+              className="partners-slider-item"
+            >
+              <img
+                src={image}
+                alt=""
+                height="32"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>

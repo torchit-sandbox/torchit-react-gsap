@@ -1,12 +1,68 @@
-export const NAV_LINKS = ['Services', 'About', 'Contacts', 'Reviews', 'Partners'];
+export const NAV_LINKS = [
+  {
+    name: 'Services',
+    href: '#services',
+  },
+  {
+    name: 'About',
+    href: '#about-us',
+  },
+  {
+    name: 'Contacts',
+    href: '#contacts',
+  },
+  {
+    name: 'Reviews',
+    href: '#reviews',
+  },
+  {
+    name: 'Partners',
+    href: 'partners',
+  },
+];
 
-export const HERO_SLIDES = [1, 2, 3, 4, 5].map((n) => ({
-  id: n,
-  src: `/images/hero/slide-${n}.jpg`,
-}));
-
-export const HERO_TABS = ['About Us', 'Services', 'Process', 'Reviews', 'Partners'];
-
+export const HERO_CONTENT = [
+  {
+    id: 1,
+    img: '/images/hero/slide-1.jpg',
+    title: 'Build. Scale. Evolve',
+    description: 'From web platforms to mobile apps — we craft digital products that grow with your business.',
+    tab: 'About Us',
+    anchor: '#about-us'
+  },
+  {
+    id: 2,
+    img: '/images/hero/slide-2.jpg',
+    title: 'Build. Scale. Evolve2',
+    description: 'From web platforms to mobile apps — we craft digital products that grow with your business2.',
+    tab: 'Services',
+    anchor: '#services'
+  },
+  {
+    id: 3,
+    img: '/images/hero/slide-3.jpg',
+    title: 'Build. Scale. Evolve3',
+    description: 'From web platforms to mobile apps — we craft digital products that grow with your business3.',
+    tab: 'Process',
+    anchor: '#process'
+  },
+  {
+    id: 4,
+    img: '/images/hero/slide-4.jpg',
+    title: 'Build. Scale. Evolve4',
+    description: 'From web platforms to mobile apps — we craft digital products that grow with your business4.',
+    tab: 'Reviews',
+    anchor: '#reviews'
+  },
+  {
+    id: 5,
+    img: '/images/hero/slide-5.jpg',
+    title: 'Build. Scale. Evolve5',
+    description: 'From web platforms to mobile apps — we craft digital products that grow with your business5.',
+    tab: 'Partners',
+    anchor: '#partners'
+  },
+];
 export const ABOUT_INTRO =
   'Our team combines design thinking, engineering services, and a genuine curiosity for solving problems. Our journey started with a simple goal — to create products that don\'t just look good, but actually work for the people who use them. Since then, we\'ve helped startups, growing businesses, and global teams build digital tools that empower their users and drive real results.';
 

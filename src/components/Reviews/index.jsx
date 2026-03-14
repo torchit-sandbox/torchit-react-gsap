@@ -1,15 +1,21 @@
-import { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { REVIEWS } from '../../data';
-import { useDragScroll } from '../../hooks';
-import { SectionHeader } from '../UI';
-import { ReviewCard } from './ReviewCard';
+import {useRef, useEffect} from 'react';
+import {gsap} from 'gsap';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import {REVIEWS} from '../../data';
+import {useDragScroll} from '../../hooks';
+import {SectionHeader} from '../UI';
+import {ReviewCard} from './ReviewCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Reviews() {
-  const { ref, onMouseDown, onMouseLeave, onMouseUp, onMouseMove } = useDragScroll();
+  const {
+    ref,
+    onMouseDown,
+    onMouseLeave,
+    onMouseUp,
+    onMouseMove
+  } = useDragScroll();
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -20,7 +26,11 @@ export function Reviews() {
         opacity: 0,
         duration: 0.9,
         ease: 'power3.out',
-        scrollTrigger: { trigger: '.reviews .section__header', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.reviews .section__header',
+          start: 'top 85%',
+          once: true
+        },
       });
       gsap.from('.reviews .section__header-tag', {
         x: 30,
@@ -28,7 +38,11 @@ export function Reviews() {
         duration: 0.65,
         ease: 'power2.out',
         delay: 0.1,
-        scrollTrigger: { trigger: '.reviews .section__header', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.reviews .section__header',
+          start: 'top 85%',
+          once: true
+        },
       });
       gsap.from('.reviews .section__header-description', {
         y: 20,
@@ -36,7 +50,11 @@ export function Reviews() {
         duration: 0.65,
         ease: 'power2.out',
         delay: 0.2,
-        scrollTrigger: { trigger: '.reviews .section__header', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.reviews .section__header',
+          start: 'top 85%',
+          once: true
+        },
       });
 
       // Cards slide in from right, staggered
@@ -46,7 +64,11 @@ export function Reviews() {
         duration: 0.75,
         ease: 'power3.out',
         stagger: 0.12,
-        scrollTrigger: { trigger: '.reviews__list', start: 'top 88%', once: true },
+        scrollTrigger: {
+          trigger: '.reviews__list',
+          start: 'top 88%',
+          once: true
+        },
       });
     }, sectionRef);
 
@@ -54,7 +76,12 @@ export function Reviews() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="reviews container" aria-labelledby="reviews-title">
+    <section
+      ref={sectionRef}
+      className="reviews container"
+      aria-labelledby="reviews-title"
+      id="reviews"
+    >
       <SectionHeader
         id="reviews-title"
         title="What our clients say"

@@ -44,8 +44,11 @@
   }
 
   &__content {
+    position: relative;
+    z-index: 2;
     padding: 144px 48px 32px 48px;
     min-height: var(--min-height);
+    pointer-events: none; // Allows clicks to pass through to the background link
 
     @include tablet-s {
       padding: 110px 24px 16px 24px;
@@ -68,6 +71,7 @@
       gap: 16px;
       align-items: center;
       justify-content: space-between;
+      pointer-events: auto; // Re-enables interaction for tabs
     }
 
     &-item {
@@ -123,9 +127,14 @@
   &-slider__button-wrapper {
     padding-top: 106px;
     padding-bottom: 164px;
+    pointer-events: none; // Allows clicks to pass through the padding area
 
     @include tablet-s {
       padding-bottom: 184px;
+    }
+
+    .slider__button {
+      pointer-events: auto; // Re-enables interaction for buttons
     }
   }
 }

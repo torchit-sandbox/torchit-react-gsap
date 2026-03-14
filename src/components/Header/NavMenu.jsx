@@ -5,10 +5,10 @@ export function NavMenu({ isOpen, onContactClick }) {
     <dialog className="header__overlay-menu-dialog container" open={isOpen}>
       <nav className="header__menu" role="navigation" aria-label="Main menu">
         <ul className="header__menu-list">
-          {NAV_LINKS.map((link) => (
-            <li key={link} className="header__menu-item">
-              <a className="header__menu-link" href="/">
-                {link}
+          {NAV_LINKS.map(({name, href}) => (
+            <li key={name} className="header__menu-item">
+              <a className="header__menu-link" href={href}>
+                {name}
               </a>
             </li>
           ))}

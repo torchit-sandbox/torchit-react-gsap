@@ -1,17 +1,17 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SERVICES } from '../../data';
-import { useSwiper } from '../../hooks';
-import { SectionHeader, SliderButton, Progressbar } from '../UI';
-import { ServiceCard } from './ServiceCard';
+import {useEffect, useRef} from 'react';
+import {gsap} from 'gsap';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import {SERVICES} from '../../data';
+import {useSwiper} from '../../hooks';
+import {SectionHeader, SliderButton, Progressbar} from '../UI';
+import {ServiceCard} from './ServiceCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const SLIDES = [...SERVICES, ...SERVICES];
 
 export function Services() {
-  const { swiperRef, progress } = useSwiper({
+  const {swiperRef, progress} = useSwiper({
     prevSelector: '.services-section .slider__button--prev',
     nextSelector: '.services-section .slider__button--next',
   });
@@ -25,7 +25,11 @@ export function Services() {
         opacity: 0,
         duration: 0.9,
         ease: 'power3.out',
-        scrollTrigger: { trigger: '.services .section__header', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.services .section__header',
+          start: 'top 85%',
+          once: true
+        },
       });
       gsap.from('.services .section__header-tag', {
         x: 30,
@@ -33,7 +37,11 @@ export function Services() {
         duration: 0.65,
         ease: 'power2.out',
         delay: 0.15,
-        scrollTrigger: { trigger: '.services .section__header', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.services .section__header',
+          start: 'top 85%',
+          once: true
+        },
       });
 
       // Slider buttons
@@ -42,14 +50,22 @@ export function Services() {
         opacity: 0,
         duration: 0.55,
         ease: 'power2.out',
-        scrollTrigger: { trigger: '.services__inner', start: 'top 88%', once: true },
+        scrollTrigger: {
+          trigger: '.services__inner',
+          start: 'top 88%',
+          once: true
+        },
       });
       gsap.from('.services-section .slider__button--next', {
         x: 30,
         opacity: 0,
         duration: 0.55,
         ease: 'power2.out',
-        scrollTrigger: { trigger: '.services__inner', start: 'top 88%', once: true },
+        scrollTrigger: {
+          trigger: '.services__inner',
+          start: 'top 88%',
+          once: true
+        },
       });
 
       // Cards stagger in
@@ -59,7 +75,11 @@ export function Services() {
         duration: 0.7,
         ease: 'power3.out',
         stagger: 0.1,
-        scrollTrigger: { trigger: '.services__slider', start: 'top 88%', once: true },
+        scrollTrigger: {
+          trigger: '.services__slider',
+          start: 'top 88%',
+          once: true
+        },
       });
 
       // Progressbar slide up
@@ -68,7 +88,11 @@ export function Services() {
         opacity: 0,
         duration: 0.6,
         ease: 'power2.out',
-        scrollTrigger: { trigger: '.services .progressbar', start: 'top 95%', once: true },
+        scrollTrigger: {
+          trigger: '.services .progressbar',
+          start: 'top 95%',
+          once: true
+        },
       });
     }, sectionRef);
 
@@ -80,6 +104,7 @@ export function Services() {
       ref={sectionRef}
       className="services container services-section"
       aria-labelledby="services-title"
+      id="services"
     >
       <SectionHeader
         id="services-title"
@@ -90,10 +115,16 @@ export function Services() {
       <div className="services__inner">
         <SliderButton direction="prev" />
 
-        <div className="services__slider swiper" ref={swiperRef}>
+        <div
+          className="services__slider swiper"
+          ref={swiperRef}
+        >
           <ul className="services__list swiper-wrapper">
             {SLIDES.map((service, i) => (
-              <li key={`${service.id}-${i}`} className="services__item swiper-slide">
+              <li
+                key={`${service.id}-${i}`}
+                className="services__item swiper-slide"
+              >
                 <ServiceCard
                   image={service.image}
                   title={service.title}

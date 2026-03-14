@@ -1,11 +1,9 @@
-import { HERO_TABS } from '../../data';
-
-export function HeroTabs({ current, progress, onTabClick }) {
+export function HeroTabs({ tabs, current, progress, onTabClick }) {
   return (
     <ul className="hero__tabs-list">
-      {HERO_TABS.map((tab, i) => (
+      {tabs.map((tab, i) => (
         <li
-          key={tab}
+          key={tab.id}
           className={`hero__tabs-item glass-effect h4${i === current ? ' active' : ''}`}
           style={
             i === current
@@ -20,7 +18,7 @@ export function HeroTabs({ current, progress, onTabClick }) {
           onKeyDown={(e) => e.key === 'Enter' && onTabClick(i)}
           aria-current={i === current ? 'true' : undefined}
         >
-          <span>{tab}</span>
+          <span>{tab.tab}</span>
         </li>
       ))}
     </ul>
