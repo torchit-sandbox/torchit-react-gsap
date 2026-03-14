@@ -33,7 +33,7 @@ export function TaskCard({ number, title, description }) {
   const handleDragStart = (e) => {
     e.dataTransfer.setData('taskNumber', number);
     e.dataTransfer.effectAllowed = 'move';
-    gsap.to(cardRef.current, { opacity: 0.5, scale: 0.97, duration: 0.1 });
+    gsap.to(cardRef.current, { opacity: 0.90, scale: 0.98, duration: 0.15 });
   };
 
   const handleDragEnd = () => {
