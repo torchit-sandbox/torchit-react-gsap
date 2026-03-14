@@ -771,6 +771,9 @@ a[class] {
     align-items: start;
   }
 }
+.header__button {
+  text-wrap: nowrap;
+}
 .header__overlay-menu-dialog {
   position: fixed;
   inset: 0;

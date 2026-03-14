@@ -17,7 +17,7 @@ export const NAV_LINKS = [
   },
   {
     name: 'Partners',
-    href: 'partners',
+    href: '#partners',
   },
 ];
 
@@ -198,18 +198,6 @@ export const PARTNERS = [
   },
   {
     id: 6,
-    image: '/images/partners/partner-3.svg',
-  },
-  {
-    id: 7,
-    image: '/images/partners/partner-1.svg',
-  },
-  {
-    id: 8,
-    image: '/images/partners/partner-2.svg',
-  },
-  {
-    id: 9,
     image: '/images/partners/partner-3.svg',
   },
 ];
