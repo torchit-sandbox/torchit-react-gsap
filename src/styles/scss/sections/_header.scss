@@ -58,6 +58,10 @@
     }
   }
 
+  &__button {
+    text-wrap: nowrap;
+  }
+
   &__overlay-menu-dialog {
     position: fixed;
     inset: 0;

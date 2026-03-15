@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { HERO_SLIDES } from '../../data';
+import { HERO_CONTENT } from '../../data';
 import { useHeroSlider } from '../../hooks';
 import { SliderButton } from '../UI';
 import { HeroSlide } from './HeroSlide';
 import { HeroTabs } from './HeroTabs';
 
 export function Hero() {
-  const { current, progress, next, prev, jumpTo } = useHeroSlider(HERO_SLIDES.length);
+  const { current, progress, next, prev, jumpTo } = useHeroSlider(HERO_CONTENT.length);
   const heroRef = useRef(null);
 
   // ── Hero entrance — staggered content reveal ─────────────────────────────
@@ -54,18 +54,19 @@ export function Hero() {
   return (
     <section ref={heroRef} className="hero container-big" aria-labelledby="hero-title">
       <div className="hero__inner">
-        {HERO_SLIDES.map((slide, i) => (
-          <HeroSlide key={slide.id} src={slide.src} isActive={i === current} />
-        ))}
+        <a className="hero__bg-link" href={HERO_CONTENT[current].anchor}>
+          {HERO_CONTENT.map((slide, i) => (
+            <HeroSlide key={slide.id} src={slide.img} isActive={i === current} />
+          ))}
+        </a>
 
         <div className="hero__content">
           <div className="hero__info">
             <h1 className="hero__info-title h2" id="hero-title">
-              Build. Scale. Evolve.
+              {HERO_CONTENT[current].title}
             </h1>
             <p className="hero__info-subtitle">
-              From web platforms to mobile apps — we craft digital products that
-              grow with your business.
+              {HERO_CONTENT[current].description}
             </p>
           </div>
 
@@ -74,7 +75,12 @@ export function Hero() {
             <SliderButton direction="next" onClick={next} />
           </div>
 
-          <HeroTabs current={current} progress={progress} onTabClick={jumpTo} />
+          <HeroTabs
+            tabs={HERO_CONTENT}
+            current={current}
+            progress={progress}
+            onTabClick={jumpTo}
+          />
         </div>
       </div>
     </section>

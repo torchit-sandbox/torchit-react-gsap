@@ -21,8 +21,8 @@ export function useSwiper({ prevSelector, nextSelector, breakpoints } = {}) {
         nextEl: nextSelector,
       },
       breakpoints: breakpoints ?? {
-        768: { slidesPerView: 2, slidesPerGroup: 2, spaceBetween: 24 },
-        1199: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 24 },
+        768: { slidesPerView: 2, slidesPerGroup: 1, spaceBetween: 24 },
+        1199: { slidesPerView: 3, slidesPerGroup: 1, spaceBetween: 24 },
       },
       on: {
         init: (swiper) => setProgress(Math.max(20, Math.round(swiper.progress * 100))),

@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SectionHeader } from '../UI';
-import { AboutContentTop } from './AboutContentTop';
-import { AboutContentMedium } from './AboutContentMedium';
+import {useState, useRef, useEffect} from 'react';
+import {gsap} from 'gsap';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import {SectionHeader} from '../UI';
+import {AboutContentTop} from './AboutContentTop';
+import {AboutContentMedium} from './AboutContentMedium';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +20,11 @@ export function About() {
         opacity: 0,
         duration: 0.9,
         ease: 'power3.out',
-        scrollTrigger: { trigger: '.about-us .section__header', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.about-us .section__header',
+          start: 'top 85%',
+          once: true
+        },
       });
       gsap.from('.about-us .section__header-tag', {
         x: 30,
@@ -28,7 +32,11 @@ export function About() {
         duration: 0.7,
         ease: 'power2.out',
         delay: 0.15,
-        scrollTrigger: { trigger: '.about-us .section__header', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.about-us .section__header',
+          start: 'top 85%',
+          once: true
+        },
       });
 
       // Top row — text slides in from left, image from right
@@ -37,14 +45,22 @@ export function About() {
         opacity: 0,
         duration: 0.9,
         ease: 'power3.out',
-        scrollTrigger: { trigger: '.about-us__content--top', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.about-us__content--top',
+          start: 'top 85%',
+          once: true
+        },
       });
       gsap.from('.about-us__content-preview', {
         x: 60,
         opacity: 0,
         duration: 0.9,
         ease: 'power3.out',
-        scrollTrigger: { trigger: '.about-us__content--top', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.about-us__content--top',
+          start: 'top 85%',
+          once: true
+        },
       });
 
       // Medium row — picture, then text, then gallery
@@ -53,7 +69,11 @@ export function About() {
         opacity: 0,
         duration: 0.85,
         ease: 'power3.out',
-        scrollTrigger: { trigger: '.about-us__content--medium', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.about-us__content--medium',
+          start: 'top 85%',
+          once: true
+        },
       });
       gsap.from('.about-us__content-wrapper', {
         y: 50,
@@ -61,7 +81,11 @@ export function About() {
         duration: 0.85,
         ease: 'power3.out',
         delay: 0.15,
-        scrollTrigger: { trigger: '.about-us__content--medium', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.about-us__content--medium',
+          start: 'top 85%',
+          once: true
+        },
       });
       gsap.from('.about-us__content-image', {
         y: 40,
@@ -70,7 +94,11 @@ export function About() {
         ease: 'power2.out',
         stagger: 0.14,
         delay: 0.3,
-        scrollTrigger: { trigger: '.about-us__content--medium', start: 'top 85%', once: true },
+        scrollTrigger: {
+          trigger: '.about-us__content--medium',
+          start: 'top 85%',
+          once: true
+        },
       });
     }, sectionRef);
 
@@ -78,10 +106,16 @@ export function About() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="about-us container" aria-labelledby="about-us-title">
+    <section
+      ref={sectionRef}
+      className="about-us container"
+      aria-labelledby="about-us-title"
+      id="about-us"
+    >
       <SectionHeader
         id="about-us-title"
-        title={<>We're not just a tech team, <br />we're your product partners.</>}
+        title={<>We're not just a tech team, <br />we're your product
+          partners.</>}
         tag="/ About Us"
       />
 

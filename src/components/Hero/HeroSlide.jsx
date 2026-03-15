@@ -27,17 +27,15 @@ export function HeroSlide({ src, isActive, index }) {
   }, [isActive]);
 
   return (
-    <a className="hero__bg-link" href="/">
-      <img
-        ref={imgRef}
-        className="hero__bg"
-        src={src}
-        width="1408"
-        height="682"
-        alt=""
-        aria-hidden="true"
-        style={{ opacity: isActive ? undefined : 0 }}
-      />
-    </a>
+    <img
+      ref={imgRef}
+      className="hero__bg"
+      src={src}
+      width="1408"
+      height="682"
+      alt=""
+      aria-hidden="true"
+      style={{ opacity: isActive ? undefined : 0 }}
+    />
   );
 }

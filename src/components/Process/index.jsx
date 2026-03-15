@@ -91,14 +91,17 @@ export function Process() {
       const updated = prev.map(col => {
         const task = col.tasks.find(t => String(t.number) === String(taskNumber));
         if (task) movedTask = task;
-        return { ...col, tasks: col.tasks.filter(t => String(t.number) !== String(taskNumber)) };
+        return {
+          ...col,
+          tasks: col.tasks.filter(t => String(t.number) !== String(taskNumber))
+        };
       });
 
       if (!movedTask) return prev;
 
       return updated.map(col =>
         col.id === targetColumnId
-          ? { ...col, tasks: [...col.tasks, movedTask] }
+          ? {...col, tasks: [...col.tasks, movedTask]}
           : col
       );
     });
@@ -115,6 +118,7 @@ export function Process() {
       ref={sectionRef}
       className="process container"
       aria-labelledby="process-title"
+      id="process"
     >
       <SectionHeader
         id="process-title"
