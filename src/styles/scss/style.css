@@ -1163,7 +1163,7 @@ a[class] {
 .about-us__content-image, .about-us__content-preview, .about-us__content-picture {
   border-radius: var(--border-radius);
   object-fit: cover;
-  height: 100%;
+  /* height: 100%; */
   min-height: 230px;
 }
 .about-us__content-video {
