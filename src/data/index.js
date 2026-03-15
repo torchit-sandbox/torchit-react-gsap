@@ -25,7 +25,7 @@ export const HERO_CONTENT = [
   {
     id: 1,
     img: '/images/hero/slide-1.jpg',
-    title: 'Build. Scale. Evolve',
+    title: 'Build. Scale. Evolve.',
     description: 'From web platforms to mobile apps — we craft digital products that grow with your business.',
     tab: 'About Us',
     anchor: '#about-us'
@@ -33,32 +33,32 @@ export const HERO_CONTENT = [
   {
     id: 2,
     img: '/images/hero/slide-2.jpg',
-    title: 'Build. Scale. Evolve2',
-    description: 'From web platforms to mobile apps — we craft digital products that grow with your business2.',
+    title: 'People behind the pixels.',
+    description: 'We’re a team of designers, developers, and thinkers turning ideas into working products with real impact.',
     tab: 'Services',
     anchor: '#services'
   },
   {
     id: 3,
     img: '/images/hero/slide-3.jpg',
-    title: 'Build. Scale. Evolve3',
-    description: 'From web platforms to mobile apps — we craft digital products that grow with your business3.',
+    title: 'Smart process, simple results.',
+    description: 'Research, design, develop, test — we keep it clear and transparent, every step of the way.',
     tab: 'Process',
     anchor: '#process'
   },
   {
     id: 4,
     img: '/images/hero/slide-4.jpg',
-    title: 'Build. Scale. Evolve4',
-    description: 'From web platforms to mobile apps — we craft digital products that grow with your business4.',
+    title: 'Trusted by those who build the future.',
+    description: 'See why our clients keep coming back — real feedback from real partnerships.',
     tab: 'Reviews',
     anchor: '#reviews'
   },
   {
     id: 5,
     img: '/images/hero/slide-5.jpg',
-    title: 'Build. Scale. Evolve5',
-    description: 'From web platforms to mobile apps — we craft digital products that grow with your business5.',
+    title: 'Collaboration over competition.',
+    description: 'We team up with ambitious companies worldwide to create meaningful digital experiences.',
     tab: 'Partners',
     anchor: '#partners'
   },
