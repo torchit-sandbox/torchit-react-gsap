@@ -199,7 +199,7 @@ export const PARTNERS = [
   {
     id: 6,
     image: '/images/partners/partner-3.svg',
-  },
+  }
 ];
 
 export const FOOTER_MENU = ['services', 'about', 'contacts', 'reviews'];
