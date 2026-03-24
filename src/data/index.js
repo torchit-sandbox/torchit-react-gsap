@@ -204,4 +204,4 @@ export const PARTNERS = [
 
 export const FOOTER_MENU = ['services', 'about', 'contacts', 'reviews'];
 
-export const MODAL_FORM = '/images/modal/modal-picture.jpg'
+export const MODAL_FORM = './images/modal/modal-picture.jpg'
