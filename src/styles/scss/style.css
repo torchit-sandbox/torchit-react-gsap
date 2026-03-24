@@ -1766,3 +1766,36 @@ a[class] {
 }
 
 /*# sourceMappingURL=style.css.map */
+/* Custom Cursor */
+
+.custom-cursor__dot,
+.custom-cursor__ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+
+.custom-cursor__dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-yellow-500);
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor__ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--color-yellow-500);
+  opacity: 0.6;
+  transform: translate(-50%, -50%);
+}
+
+*,
+*::before,
+*::after {
+  cursor: none !important;
+}

@@ -6,3 +6,5 @@ export { Process } from './Process';
 export { Reviews } from './Reviews';
 export { Partners } from './Partners';
 export { Footer } from './Footer';
+export { CustomCursor } from './CustomCursor/CustomCursor';
+

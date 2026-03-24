@@ -7,11 +7,13 @@ import {
   Reviews,
   Partners,
   Footer,
+  CustomCursor
 } from './components';
 
 export default function App() {
   return (
     <>
+      <CustomCursor /> 
       <Header />
       <main className="main">
         <Hero />
