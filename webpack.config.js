@@ -37,7 +37,6 @@ module.exports = (env, argv) => {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
         },
-        // Static assets (fonts, images) served from /public — no loader needed
       ],
     },
 
@@ -47,17 +46,20 @@ module.exports = (env, argv) => {
       }),
     ],
 
-    devServer: {
-      port: 3000,
-      hot: true,
-      historyApiFallback: true,
-      // Serve /public folder as static root
-      static: {
-        directory: path.join(__dirname, 'public'),
-        publicPath: '/',
-      },
-      open: true,
-    },
+    devServer: isDev
+      ? {
+          host: '127.0.0.1',
+          port: 3000,
+          hot: true,
+          historyApiFallback: true,
+          allowedHosts: 'auto',
+          static: {
+            directory: path.join(__dirname, 'public'),
+            publicPath: '/',
+          },
+          open: true,
+        }
+      : undefined,
 
     devtool: isDev ? 'eval-source-map' : 'source-map',
 
