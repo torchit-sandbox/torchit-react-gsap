@@ -1,4 +1,4 @@
-import {useRef, useEffect} from 'react';
+import {useRef, useEffect, useState} from 'react';
 import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {REVIEWS} from '../../data';
@@ -14,9 +14,27 @@ export function Reviews() {
     onMouseDown,
     onMouseLeave,
     onMouseUp,
-    onMouseMove
+    onMouseMove,
+    dragMoved
   } = useDragScroll();
   const sectionRef = useRef(null);
+  const cardRefs = useRef(new Map());
+  const [activeId, setActiveId] = useState(null);
+
+  const setCardRef = (id) => (node) => {
+    if (!node) {
+      cardRefs.current.delete(id);
+      return;
+    }
+    cardRefs.current.set(id, node);
+  };
+
+  useEffect(() => {
+    if (activeId == null) return;
+    const node = cardRefs.current.get(activeId);
+    if (!node) return;
+    node.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }, [activeId]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -101,10 +119,16 @@ export function Reviews() {
         {REVIEWS.map((review) => (
           <ReviewCard
             key={review.id}
+            ref={setCardRef(review.id)}
             text={review.text}
             author={review.author}
             role={review.role}
             photo={review.photo}
+            isActive={review.id === activeId}
+            onActivate={() => {
+              if (dragMoved.current) return;
+              setActiveId(review.id);
+            }}
           />
         ))}
       </div>

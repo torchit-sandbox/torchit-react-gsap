@@ -1,14 +1,21 @@
-import { useState, useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import { gsap } from 'gsap';
 
-export function ReviewCard({ text, author, role, photo }) {
-  const [expanded, setExpanded] = useState(false);
+export const ReviewCard = forwardRef(function ReviewCard(
+  { text, author, role, photo, isActive, onActivate },
+  forwardedRef,
+) {
   const cardRef = useRef(null);
   const quoteRef = useRef(null);
 
-  const handleToggle = () => {
-    setExpanded((v) => !v);
-    // Pulse the quote icon on toggle
+  const setRefs = (node) => {
+    cardRef.current = node;
+    if (typeof forwardedRef === 'function') forwardedRef(node);
+    else if (forwardedRef) forwardedRef.current = node;
+  };
+
+  const handleActivate = () => {
+    onActivate?.();
     gsap.fromTo(
       quoteRef.current,
       { scale: 0.8, rotate: -8 },
@@ -36,15 +43,15 @@ export function ReviewCard({ text, author, role, photo }) {
 
   return (
     <article
-      ref={cardRef}
-      className={`review-card${expanded ? ' expanded' : ''}`}
-      onClick={handleToggle}
+      ref={setRefs}
+      className={`review-card${isActive ? ' expanded' : ''}`}
+      onClick={handleActivate}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => e.key === 'Enter' && handleToggle()}
-      aria-expanded={expanded}
+      onKeyDown={(e) => e.key === 'Enter' && handleActivate()}
+      aria-expanded={isActive}
     >
       <span ref={quoteRef} className="review-card__quote" aria-hidden="true" />
       <p className="review-card__text">{text}</p>
@@ -64,4 +71,4 @@ export function ReviewCard({ text, author, role, photo }) {
       </footer>
     </article>
   );
-}
+});
