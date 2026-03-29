@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-  "dev": "webpack serve --mode development --host 127.0.0.1 --port 3000",
-  "build": "webpack --mode production",
-  "preview": "npx serve dist --listen tcp://127.0.0.1:4173"
+    "dev": "webpack serve --mode development --host 127.0.0.1 --port 3000",
+    "build": "webpack --mode production",
+    "preview": "npx serve dist --listen tcp://127.0.0.1:4173"
   },
   "dependencies": {
     "gsap": "^3.12.5",
@@ -21,6 +21,8 @@
     "babel-loader": "^9.1.3",
     "css-loader": "^7.1.1",
     "html-webpack-plugin": "^5.6.0",
+    "sass": "^1.98.0",
+    "sass-loader": "^16.0.7",
     "style-loader": "^4.0.0",
     "webpack": "^5.105.4",
     "webpack-cli": "^7.0.2",
