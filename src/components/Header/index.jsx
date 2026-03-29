@@ -70,7 +70,10 @@ export function Header() {
       ([entry]) => {
         setShowNavLinks(!entry.isIntersecting);
       },
-      { threshold: 0 }
+      { 
+        threshold: 0,
+        rootMargin: '-10% 0px 0px 0px'
+      }
     );
 
     observer.observe(heroEl);
