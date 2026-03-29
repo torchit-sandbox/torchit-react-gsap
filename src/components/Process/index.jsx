@@ -4,6 +4,7 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {PROCESS_COLUMNS} from '../../data';
 import {SectionHeader} from '../UI';
 import {BoardColumn} from './BoardColumn';
+import {ProcessMobile} from './ProcessMobile';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,8 +12,12 @@ export function Process() {
   const [columns, setColumns] = useState(PROCESS_COLUMNS);
   const [isDirty, setIsDirty] = useState(false);
   const sectionRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 899);
 
   useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 899);
+    window.addEventListener('resize', handleResize);
+
     const ctx = gsap.context(() => {
       // Header
       gsap.from('.process .section__header-title', {
@@ -39,51 +44,70 @@ export function Process() {
         },
       });
 
-      // Reset button
-      gsap.from('.process__reset', {
-        y: 16,
-        opacity: 0,
-        duration: 0.5,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.process__reset',
-          start: 'top 90%',
-          once: true
-        },
-      });
+      if (!isMobile) {
+        // Reset button
+        gsap.from('.process__reset', {
+          y: 16,
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.process__reset',
+            start: 'top 90%',
+            once: true
+          },
+        });
 
-      // Board columns cascade in
-      gsap.from('.board__column', {
-        y: 80,
-        opacity: 0,
-        duration: 0.75,
-        ease: 'power3.out',
-        stagger: 0.15,
-        scrollTrigger: {
-          trigger: '.board__columns',
-          start: 'top 85%',
-          once: true
-        },
-      });
+        // Board columns cascade in
+        gsap.from('.board__column', {
+          y: 80,
+          opacity: 0,
+          duration: 0.75,
+          ease: 'power3.out',
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: '.board__columns',
+            start: 'top 85%',
+            once: true
+          },
+        });
 
-      // Task cards stagger within columns
-      gsap.from('.board__column-item', {
-        y: 30,
-        opacity: 0,
-        duration: 0.55,
-        ease: 'power2.out',
-        stagger: 0.08,
-        delay: 0.35,
-        scrollTrigger: {
-          trigger: '.board__columns',
-          start: 'top 85%',
-          once: true
-        },
-      });
+        // Task cards stagger within columns
+        gsap.from('.board__column-item', {
+          y: 30,
+          opacity: 0,
+          duration: 0.55,
+          ease: 'power2.out',
+          stagger: 0.08,
+          delay: 0.35,
+          scrollTrigger: {
+            trigger: '.board__columns',
+            start: 'top 85%',
+            once: true
+          },
+        });
+      } else {
+        // Mobile cards animation
+        gsap.from('.process-mobile__card', {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: '.process-mobile__list',
+            start: 'top 85%',
+            once: true
+          },
+        });
+      }
     }, sectionRef);
 
-    return () => ctx.revert();
-  }, []);
+    return () => {
+      ctx.revert();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isMobile]);
 
   const handleDrop = (taskNumber, targetColumnId) => {
     setColumns(prev => {
@@ -126,26 +150,32 @@ export function Process() {
         tag="/ Process"
       />
 
-      <button
-        className={`process__reset button button--yellow${!isDirty ? ' disabled' : ''}`}
-        type="button"
-        onClick={handleReset}
-        disabled={!isDirty}
-      >
-        Reset Board
-      </button>
+      {!isMobile ? (
+        <>
+          <button
+            className={`process__reset button button--yellow${!isDirty ? ' disabled' : ''}`}
+            type="button"
+            onClick={handleReset}
+            disabled={!isDirty}
+          >
+            Reset Board
+          </button>
 
-      <ul className="board__columns">
-        {columns.map((col) => (
-          <BoardColumn
-            key={col.id}
-            id={col.id}
-            title={col.title}
-            tasks={col.tasks}
-            onDrop={handleDrop}
-          />
-        ))}
-      </ul>
+          <ul className="board__columns">
+            {columns.map((col) => (
+              <BoardColumn
+                key={col.id}
+                id={col.id}
+                title={col.title}
+                tasks={col.tasks}
+                onDrop={handleDrop}
+              />
+            ))}
+          </ul>
+        </>
+      ) : (
+        <ProcessMobile />
+      )}
     </section>
   );
 }
