@@ -144,6 +144,33 @@ export const PROCESS_COLUMNS = [
   },
 ];
 
+export const MOBILE_PROCESS_DATA = [
+  {
+    id: 1,
+    title: 'Discovery',
+    description: 'We start with understanding — your business, your users, and your goals. At this stage, we dive into research, analyze competitors, identify challenges, and define success metrics. We outline user journeys, collect insights, and build a foundation for design decisions that actually make sense.',
+    icon: '/images/process/discovery-icon.svg'
+  },
+  {
+    id: 2,
+    title: 'Design',
+    description: 'Here, strategy turns into visuals. We create wireframes and interactive prototypes that bring structure and logic to life. Our UI design stage focuses on clarity, usability, and emotional connection — ensuring each element has a purpose. You’ll see your product evolve through iterations, always with your feedback in mind.',
+    icon: '/images/process/design-icon.svg'
+  },
+  {
+    id: 3,
+    title: 'Development',
+    description: 'Our developers turn design into code — clean, scalable, and performance-oriented. We use modern technologies and best practices to ensure reliability and smooth performance across all platforms. Throughout the process, we keep communication open, provide regular updates, and test continuously to catch issues early.',
+    icon: '/images/process/development-icon.svg'
+  },
+  {
+    id: 4,
+    title: 'Launch & Growth',
+    description: 'We don’t just launch — we help your product grow. After deployment, we monitor performance, collect feedback, and optimize the experience based on real data. Our team supports you post-launch — from minor UI improvements to major feature expansions — keeping your product relevant and effective.',
+    icon: '/images/process/launch-icon.svg'
+  }
+];
+
 export const REVIEWS = [
   {
     id: 1,

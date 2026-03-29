@@ -129,12 +129,33 @@
 
         &::after {
           content: '';
+          background-image: none;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
           background-color: var(--color-white);;
           border-radius: 50%;
           @include square(8px);
           margin: 8px;
+          transition: background-color var(--transition-duration) ease,
+          width var(--transition-duration) ease,
+          height var(--transition-duration) ease,
+          margin var(--transition-duration) ease;
         }
       }
+
+      &:hover span::after,
+      &:focus-visible span::after {
+        background-color: var(--color-white);
+        mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2015'%20fill='none'%3E%3Cpath%20d='M12.2534%208.90687L6.2492%2014.88L0.244991%208.90687C0.174151%208.85293%200.115727%208.78439%200.073677%208.7059C0.0316267%208.62742%200.00693091%208.54081%200.00126131%208.45195C-0.00440829%208.36309%200.00908102%208.27405%200.0408156%208.19085C0.0725502%208.10766%200.121789%208.03225%200.185199%207.96974C0.24861%207.90723%200.324711%207.85907%200.40835%207.82853C0.49199%207.79799%200.581216%207.78577%200.669987%207.79271C0.758758%207.79965%200.845002%207.82558%200.922881%207.86874C1.00076%207.91191%201.06845%207.97131%201.12138%208.04291L5.62765%2012.5119V0.621558C5.62765%200.456712%205.69313%200.298617%205.8097%200.182054C5.92626%200.0654898%206.08436%203.8147e-06%206.2492%203.8147e-06C6.41405%203.8147e-06%206.57214%200.0654898%206.68871%200.182054C6.80527%200.298617%206.87076%200.456712%206.87076%200.621558V12.5119L11.377%208.04291C11.4941%207.9267%2011.6525%207.86173%2011.8174%207.86232C11.9824%207.8629%2012.1403%207.92898%2012.2565%208.04602C12.3727%208.16306%2012.4377%208.32147%2012.4371%208.48641C12.4365%208.65135%2012.3705%208.8093%2012.2534%208.92552V8.90687Z'%20fill='%23111215'/%3E%3C/svg%3E");
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+        background-image: none;
+        border-radius: 50%;
+        @include square(15px);
+      }
+
       &.active {
         color: var(--color-gray-100);
       }

@@ -1,4 +1,18 @@
 export function HeroTabs({ tabs, current, progress, onTabClick }) {
+  const handleActivate = (index, anchor) => {
+    onTabClick(index);
+    if (!anchor) return;
+
+    const id = anchor.startsWith('#') ? anchor.slice(1) : anchor;
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    window.location.hash = anchor;
+  };
+
   return (
     <ul className="hero__tabs-list">
       {tabs.map((tab, i) => (
@@ -12,10 +26,10 @@ export function HeroTabs({ tabs, current, progress, onTabClick }) {
                 }
               : { backgroundImage: 'none' }
           }
-          onClick={() => onTabClick(i)}
+          onClick={() => handleActivate(i, tab.anchor)}
           role="button"
           tabIndex={0}
-          onKeyDown={(e) => e.key === 'Enter' && onTabClick(i)}
+          onKeyDown={(e) => e.key === 'Enter' && handleActivate(i, tab.anchor)}
           aria-current={i === current ? 'true' : undefined}
         >
           <span>{tab.tab}</span>

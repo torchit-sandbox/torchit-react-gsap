@@ -1,6 +1,6 @@
 import {useState, useCallback} from "react";
 import {useForm, Controller} from "react-hook-form";
-import '../../styles/scss/style.css'
+import '../../styles/scss/style.scss'
 import {Progressbar} from "../UI";
 import {MODAL_FORM} from "../../data";
 
