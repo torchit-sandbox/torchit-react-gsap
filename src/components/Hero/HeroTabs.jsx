@@ -1,6 +1,6 @@
 export function HeroTabs({ tabs, current, progress, onTabClick }) {
-  const handleActivate = (index, anchor) => {
-    onTabClick(index);
+  const handleAnchorClick = (e, anchor) => {
+    e.stopPropagation();
     if (!anchor) return;
 
     const id = anchor.startsWith('#') ? anchor.slice(1) : anchor;
@@ -26,13 +26,21 @@ export function HeroTabs({ tabs, current, progress, onTabClick }) {
                 }
               : { backgroundImage: 'none' }
           }
-          onClick={() => handleActivate(i, tab.anchor)}
+          onClick={() => onTabClick(i)}
           role="button"
           tabIndex={0}
-          onKeyDown={(e) => e.key === 'Enter' && handleActivate(i, tab.anchor)}
+          onKeyDown={(e) => e.key === 'Enter' && onTabClick(i)}
           aria-current={i === current ? 'true' : undefined}
         >
-          <span>{tab.tab}</span>
+          <span>
+            {tab.tab}
+            <a
+              href={tab.anchor}
+              className="hero__tabs-item-link"
+              onClick={(e) => handleAnchorClick(e, tab.anchor)}
+              aria-label={`Go to ${tab.tab} section`}
+            />
+          </span>
         </li>
       ))}
     </ul>
