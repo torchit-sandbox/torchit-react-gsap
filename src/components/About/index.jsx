@@ -2,13 +2,14 @@ import {useState, useRef, useEffect} from 'react';
 import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {SectionHeader} from '../UI';
-import {AboutContentTop} from './AboutContentTop';
-import {AboutContentMedium} from './AboutContentMedium';
+// import {AboutContentTop} from './AboutContentTop';
+// import {AboutContentMedium} from './AboutContentMedium';
+import {AboutContent} from './AboutContent';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function About() {
-  const [videoExpanded, setVideoExpanded] = useState(false);
+  // const [videoExpanded, setVideoExpanded] = useState(false);
   const [textExpanded, setTextExpanded] = useState(false);
   const sectionRef = useRef(null);
 
@@ -40,7 +41,7 @@ export function About() {
       });
 
       // Top row — text slides in from left, image from right
-      gsap.from('.about-us__content--top .about-us__content-info', {
+    /*  gsap.from('.about-us__content--top .about-us__content-info', {
         x: -60,
         opacity: 0,
         duration: 0.9,
@@ -61,7 +62,7 @@ export function About() {
           start: 'top 85%',
           once: true
         },
-      });
+      });*/
 
       // Medium row — picture, then text, then gallery
       gsap.from('.about-us__content-picture', {
@@ -87,7 +88,7 @@ export function About() {
           once: true
         },
       });
-      gsap.from('.about-us__content-image', {
+     /* gsap.from('.about-us__content-image', {
         y: 40,
         opacity: 0,
         duration: 0.75,
@@ -99,7 +100,7 @@ export function About() {
           start: 'top 85%',
           once: true
         },
-      });
+      });*/
     }, sectionRef);
 
     return () => ctx.revert();
@@ -120,12 +121,16 @@ export function About() {
       />
 
       <div className="about-us__wrapper">
-        <AboutContentTop
+        {/*<AboutContentTop
           isExpanded={videoExpanded}
           onPreviewClick={() => setVideoExpanded(true)}
           onVideoClick={() => setVideoExpanded(false)}
         />
         <AboutContentMedium
+          isExpanded={textExpanded}
+          onToggle={() => setTextExpanded((v) => !v)}
+        />*/}
+        <AboutContent
           isExpanded={textExpanded}
           onToggle={() => setTextExpanded((v) => !v)}
         />
