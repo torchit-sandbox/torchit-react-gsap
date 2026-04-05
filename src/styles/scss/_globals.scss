@@ -79,7 +79,18 @@ section {
 }
 
 [id] {
-  scroll-margin-top: 150px;
+  @include tablet-above {
+    scroll-margin-top: -50px;
+  }
+
+  @include mobile {
+    scroll-margin-top: 20px;
+  }
+
+  @include mobile-l {
+    scroll-margin-top: 70px;
+  }
+
 }
 
 a,
