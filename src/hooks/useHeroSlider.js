@@ -6,11 +6,14 @@ const STEP = 50;
 export function useHeroSlider(count) {
   const [current, setCurrent] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef(null);
   const progressRef = useRef(0);
 
   const startTimer = useCallback(() => {
     clearInterval(timerRef.current);
+    if (isPaused) return;
+
     timerRef.current = setInterval(() => {
       progressRef.current += (STEP / DURATION) * 100;
       setProgress(progressRef.current);
@@ -20,20 +23,20 @@ export function useHeroSlider(count) {
         setCurrent((c) => (c + 1) % count);
       }
     }, STEP);
-  }, [count]);
+  }, [count, isPaused]);
 
   const goTo = useCallback(
     (idx) => {
-      const next = typeof idx === 'function' ? idx : () => idx;
+      const nextSlide = typeof idx === 'function' ? idx : () => idx;
       setCurrent((c) => {
-        const resolved = next(c);
+        const resolved = nextSlide(c);
         progressRef.current = 0;
         setProgress(0);
         return resolved;
       });
-      startTimer();
+      if (!isPaused) startTimer();
     },
-    [startTimer],
+    [startTimer, isPaused],
   );
 
   const next = useCallback(() => goTo((c) => (c + 1) % count), [goTo, count]);
@@ -45,5 +48,5 @@ export function useHeroSlider(count) {
     return () => clearInterval(timerRef.current);
   }, [startTimer]);
 
-  return { current, progress, next, prev, jumpTo };
+  return { current, progress, next, prev, jumpTo, setIsPaused };
 }
