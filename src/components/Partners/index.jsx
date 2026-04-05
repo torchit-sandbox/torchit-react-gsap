@@ -30,7 +30,7 @@ function horizontalLoop(items, config) {
       let w = (widths[i] = parseFloat(gsap.getProperty(el, 'width', 'px')));
       xPercents[i] = snap(
         (parseFloat(gsap.getProperty(el, 'x', 'px')) / w) * 100 +
-          gsap.getProperty(el, 'xPercent')
+        gsap.getProperty(el, 'xPercent')
       );
       return xPercents[i];
     },
@@ -41,7 +41,7 @@ function horizontalLoop(items, config) {
     (xPercents[length - 1] / 100) * widths[length - 1] -
     startX +
     items[length - 1].offsetWidth *
-      gsap.getProperty(items[length - 1], 'scaleX') +
+    gsap.getProperty(items[length - 1], 'scaleX') +
     (parseFloat(config.paddingRight) || 0);
   for (i = 0; i < length; i++) {
     item = items[i];
@@ -78,7 +78,7 @@ function horizontalLoop(items, config) {
   function toIndex(index, vars) {
     vars = vars || {};
     Math.abs(index - curIndex) > length / 2 &&
-      (index += index > curIndex ? -length : length);
+    (index += index > curIndex ? -length : length);
     let newIndex = gsap.utils.wrap(0, length, index),
       time = times[newIndex];
     if (time > tl.time() !== index > curIndex) {
@@ -106,49 +106,57 @@ export function Partners() {
   const trackRef = useRef(null);
 
   useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const partners = Array.from(track.children);
-    const images = track.querySelectorAll('img');
     let loop;
-
-    const initLoop = () => {
-      loop = horizontalLoop(partners, {
-        repeat: -1,
-        speed: 0.5,
-        paddingRight: 80, // match the margin-right from CSS
-      });
-    };
-
     const handleResize = () => {
       if (loop) loop.kill();
-      initLoop();
-    };
-
-    // Wait for all images to load to get correct widths
-    let loadedCount = 0;
-    const handleInit = () => {
-      loadedCount++;
-      if (loadedCount === images.length) {
-        initLoop();
-        window.addEventListener('resize', handleResize);
-      }
-    };
-
-    if (images.length === 0) {
-      initLoop();
-    } else {
-      images.forEach(img => {
-        if (img.complete) {
-          handleInit();
-        } else {
-          img.onload = handleInit;
-        }
+      loop = horizontalLoop(Array.from(trackRef.current.children), {
+        repeat: -1,
+        speed: 0.5,
+        paddingRight: 80,
       });
-    }
+    };
+
+    const ctx = gsap.context(() => {
+      const track = trackRef.current;
+      if (!track) return;
+
+      const images = track.querySelectorAll('img');
+      let loadedCount = 0;
+      let initialized = false;
+
+      const handleInit = () => {
+        loadedCount++;
+        if (loadedCount >= images.length && !initialized) {
+          initialized = true;
+          requestAnimationFrame(() => {
+            if (trackRef.current) {
+              loop = horizontalLoop(Array.from(trackRef.current.children), {
+                repeat: -1,
+                speed: 0.5,
+                paddingRight: 80,
+              });
+              window.addEventListener('resize', handleResize);
+            }
+          });
+        }
+      };
+
+      if (images.length === 0) {
+        handleInit();
+      } else {
+        images.forEach(img => {
+          if (img.complete) {
+            handleInit();
+          } else {
+            img.onload = handleInit;
+            img.onerror = handleInit;
+          }
+        });
+      }
+    }, trackRef);
 
     return () => {
+      ctx.revert();
       if (loop) loop.kill();
       window.removeEventListener('resize', handleResize);
     };
@@ -173,7 +181,6 @@ export function Partners() {
                 src={image}
                 alt=""
                 height="32"
-                loading="lazy"
               />
             </div>
           ))}
