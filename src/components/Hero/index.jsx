@@ -7,7 +7,7 @@ import { HeroSlide } from './HeroSlide';
 import { HeroTabs } from './HeroTabs';
 
 export function Hero() {
-  const { current, progress, next, prev, jumpTo } = useHeroSlider(HERO_CONTENT.length);
+  const { current, progress, next, prev, jumpTo, setIsPaused } = useHeroSlider(HERO_CONTENT.length);
   const heroRef = useRef(null);
 
   // ── Hero entrance — staggered content reveal ─────────────────────────────
@@ -80,6 +80,7 @@ export function Hero() {
             current={current}
             progress={progress}
             onTabClick={jumpTo}
+            onHover={setIsPaused}
           />
         </div>
       </div>

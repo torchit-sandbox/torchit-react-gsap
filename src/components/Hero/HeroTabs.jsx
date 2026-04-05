@@ -1,4 +1,4 @@
-export function HeroTabs({ tabs, current, progress, onTabClick }) {
+export function HeroTabs({ tabs, current, progress, onTabClick, onHover }) {
   const handleAnchorClick = (e, anchor) => {
     e.stopPropagation();
     if (!anchor) return;
@@ -27,6 +27,8 @@ export function HeroTabs({ tabs, current, progress, onTabClick }) {
               : { backgroundImage: 'none' }
           }
           onClick={() => onTabClick(i)}
+          onMouseEnter={() => onHover(true)}
+          onMouseLeave={() => onHover(false)}
           role="button"
           tabIndex={0}
           onKeyDown={(e) => e.key === 'Enter' && onTabClick(i)}

@@ -82,6 +82,7 @@ export function Header() {
   }, [isSmallScreen]);
 
   const toggle = () => setMenuOpen((v) => !v);
+  const closeMenu = () => setMenuOpen(false);
 
   const handleOpenModal = () => {
     setMenuOpen(false);
@@ -99,7 +100,7 @@ export function Header() {
       className={`header container${menuOpen ? ' open' : ''}`}
     >
       <div className="header__inner glass-effect">
-        <a className="header__logo" href="/">
+        <a className="header__logo" href="/" onClick={closeMenu}>
           <img
             className="header__logo-icon"
             src="/images/svg/white-logo.svg"
@@ -113,6 +114,7 @@ export function Header() {
           isOpen={menuOpen}
           showLinks={showNavLinks}
           onContactClick={handleOpenModal}
+          onClose={closeMenu}
         />
         <BurgerButton isActive={menuOpen} onClick={toggle} />
       </div>
