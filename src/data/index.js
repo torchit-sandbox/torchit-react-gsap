@@ -42,7 +42,7 @@ export const HERO_CONTENT = [
   },
   {
     id: 3,
-    img: '/images/hero/slide-3.jpg',
+    img: '/images/hero/slide-3.mp4',
     title: 'Improve What Exists.',
     description:
       'We step into existing products to fix issues, improve maintainability, and keep development moving.',
