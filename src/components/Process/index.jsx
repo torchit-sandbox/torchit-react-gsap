@@ -146,7 +146,7 @@ export function Process() {
     >
       <SectionHeader
         id="process-title"
-        title={<>Clear process.<br />Predictable results.</>}
+        title={<>How work moves forward.</>}
         tag="/ Process"
       />
 

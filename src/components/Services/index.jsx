@@ -108,7 +108,7 @@ export function Services() {
     >
       <SectionHeader
         id="services-title"
-        title={<>Your Product.<br />Our Expertise.</>}
+        title={<>How products move forward.</>}
         tag="/ Services"
       />
 
