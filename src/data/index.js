@@ -24,7 +24,7 @@ export const NAV_LINKS = [
 export const HERO_CONTENT = [
   {
     id: 1,
-    img: '/images/hero/slide-1.jpg',
+    img: '/images/hero/slide-1.webp',
     title: 'Products That Work.',
     description:
       'TorchIT helps startups and growing teams design, build, and improve digital products with clear scope and reliable execution.',
@@ -33,7 +33,7 @@ export const HERO_CONTENT = [
   },
   {
     id: 2,
-    img: '/images/hero/slide-2.jpg',
+    img: '/images/hero/slide-2.webp',
     title: 'From Idea to Launch.',
     description:
       'We define priorities, shape user experience, and build the right foundation from the start.',
@@ -51,7 +51,7 @@ export const HERO_CONTENT = [
   },
   {
     id: 4,
-    img: '/images/hero/slide-4.jpg',
+    img: '/images/hero/slide-4.webp',
     title: 'Clear Process. Predictable Delivery.',
     description:
       'Structured stages, visible progress, and direct communication keep projects under control.',
