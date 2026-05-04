@@ -5,6 +5,35 @@ function isVideoSrc(src = '') {
   return /\.(mp4|webm|ogg)$/i.test(src);
 }
 
+function getVideoSources(src = '') {
+  const sources = [];
+
+  if (/\.mp4$/i.test(src)) {
+    sources.push({ src: src.replace(/\.mp4$/i, '.webm'), type: 'video/webm' });
+    sources.push({ src, type: 'video/mp4' });
+    return sources;
+  }
+
+  if (/\.webm$/i.test(src)) {
+    sources.push({ src, type: 'video/webm' });
+    return sources;
+  }
+
+  if (/\.ogg$/i.test(src)) {
+    sources.push({ src, type: 'video/ogg' });
+    return sources;
+  }
+
+  return [{ src, type: 'video/mp4' }];
+}
+
+function getPosterSrc(src = '') {
+  if (/\.mp4$/i.test(src)) return src.replace(/\.mp4$/i, '-poster.webp');
+  if (/\.webm$/i.test(src)) return src.replace(/\.webm$/i, '-poster.webp');
+  if (/\.ogg$/i.test(src)) return src.replace(/\.ogg$/i, '-poster.webp');
+  return undefined;
+}
+
 export function HeroSlide({ src, isActive }) {
   const mediaRef = useRef(null);
   const wasActive = useRef(false);
@@ -44,18 +73,25 @@ export function HeroSlide({ src, isActive }) {
   }, [isActive, isVideo]);
 
   if (isVideo) {
+    const sources = getVideoSources(src);
+    const poster = getPosterSrc(src);
+
     return (
       <video
         ref={mediaRef}
         className="hero__bg"
-        src={src}
         muted
         loop
         playsInline
         preload="metadata"
+        poster={poster}
         aria-hidden="true"
         style={{ opacity: isActive ? undefined : 0 }}
-      />
+      >
+        {sources.map((source) => (
+          <source key={source.src} src={source.src} type={source.type} />
+        ))}
+      </video>
     );
   }
 
