@@ -29,7 +29,7 @@ export function NavMenu({ isOpen, showLinks = true, onContactClick, onClose }) {
         type="button"
         onClick={onContactClick}
       >
-        Contact us
+        Start a Project
       </button>
     </dialog>
   );

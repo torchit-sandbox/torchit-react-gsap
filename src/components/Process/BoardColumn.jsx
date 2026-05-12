@@ -33,7 +33,7 @@ export function BoardColumn({ id, title, tasks, onDrop }) {
       <ul className="board__column-list">
         {tasks.length === 0 ? (
           <li className="board__column-item board__column-item--empty">
-            Waiting for the task...
+            No task yet.
           </li>
         ) : (
           tasks.map((task) => (

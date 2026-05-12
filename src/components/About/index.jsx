@@ -115,8 +115,7 @@ export function About() {
     >
       <SectionHeader
         id="about-us-title"
-        title={<>We're not just a tech team, <br />we're your product
-          partners.</>}
+        title={<>Product thinking. Clear execution.</>}
         tag="/ About Us"
       />
 

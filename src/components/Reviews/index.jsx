@@ -104,7 +104,7 @@ export function Reviews() {
         id="reviews-title"
         title="What our clients say"
         tag="/ Reviews"
-        description="We build long-term partnerships based on trust, communication, and results. Here's what our clients share about working with us."
+        description="Experiences from teams we’ve worked with."
       />
 
       <div

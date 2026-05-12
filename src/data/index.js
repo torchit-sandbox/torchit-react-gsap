@@ -1,15 +1,15 @@
 export const NAV_LINKS = [
   {
-    name: 'Services',
-    href: '#services',
-  },
-  {
     name: 'About',
     href: '#about-us',
   },
   {
-    name: 'Contacts',
-    href: '#contacts',
+    name: 'Services',
+    href: '#services',
+  },
+  {
+    name: 'Process',
+    href: '#process',
   },
   {
     name: 'Reviews',
@@ -24,79 +24,92 @@ export const NAV_LINKS = [
 export const HERO_CONTENT = [
   {
     id: 1,
-    img: '/images/hero/slide-1.jpg',
-    title: 'Build. Scale. Evolve.',
-    description: 'From web platforms to mobile apps — we craft digital products that grow with your business.',
-    tab: 'About Us',
-    anchor: '#about-us'
+    img: '/images/hero/slide-1.webp',
+    title: 'Products That Work.',
+    description:
+      'TorchIT helps startups and growing teams design, build, and improve digital products with clear scope and reliable execution.',
+    tab: 'About',
+    anchor: '#about-us',
   },
   {
     id: 2,
-    img: '/images/hero/slide-2.jpg',
-    title: 'People behind the pixels.',
-    description: 'We’re a team of designers, developers, and thinkers turning ideas into working products with real impact.',
-    tab: 'Services',
-    anchor: '#services'
+    img: '/images/hero/slide-2.webp',
+    title: 'From Idea to Launch.',
+    description:
+      'We define priorities, shape user experience, and build the right foundation from the start.',
+    tab: 'Build',
+    anchor: '#services',
   },
   {
     id: 3,
-    img: '/images/hero/slide-3.jpg',
-    title: 'Smart process, simple results.',
-    description: 'Research, design, develop, test — we keep it clear and transparent, every step of the way.',
-    tab: 'Process',
-    anchor: '#process'
+    img: '/images/hero/slide-3.mp4',
+    title: 'Improve What Exists.',
+    description:
+      'We step into existing products to fix issues, improve maintainability, and keep development moving.',
+    tab: 'Support',
+    anchor: '#services',
   },
   {
     id: 4,
-    img: '/images/hero/slide-4.jpg',
-    title: 'Trusted by those who build the future.',
-    description: 'See why our clients keep coming back — real feedback from real partnerships.',
-    tab: 'Reviews',
-    anchor: '#reviews'
+    img: '/images/hero/slide-4.webp',
+    title: 'Clear Process. Predictable Delivery.',
+    description:
+      'Structured stages, visible progress, and direct communication keep projects under control.',
+    tab: 'Process',
+    anchor: '#process',
   },
   {
     id: 5,
     img: '/images/hero/slide-5.jpg',
-    title: 'Collaboration over competition.',
-    description: 'We team up with ambitious companies worldwide to create meaningful digital experiences.',
-    tab: 'Partners',
-    anchor: '#partners'
+    title: 'A Reliable Product Team.',
+    description:
+      'We work closely with founders and teams to reduce wasted effort and keep products moving forward.',
+    tab: 'Partner',
+    anchor: '#about-us',
   },
 ];
+
 export const ABOUT_INTRO =
-  'Our team combines design thinking, engineering services, and a genuine curiosity for solving problems. Our journey started with a simple goal — to create products that don\'t just look good, but actually work for the people who use them. Since then, we\'ve helped startups, growing businesses, and global teams build digital tools that empower their users and drive real results.';
+  'TorchIT helps startups and growing businesses build new products and improve existing ones.';
 
 export const ABOUT_PARAGRAPHS = [
-  "At TorchIT, we believe great digital products are born at the intersection of logic and emotion. We're a team of designers, developers, and strategists who value clarity, empathy, and collaboration above all else.",
+  'We begin with the product, the users, and the business goal. That gives the work direction before time and budget are spent in the wrong place.',
 
-  "Our journey started with a simple goal — to create products that don't just look good, but truly work for the people who use them. Since then, we've helped startups, growing businesses, and global teams build digital tools that empower users and deliver real results.",
+  'Our work combines product thinking, UX design, and engineering. We turn ideas, unclear requirements, and existing codebases into solutions that are clearer, more usable, and easier to grow.',
 
-  "We approach every project with curiosity and care. Before writing a single line of code, we take time to understand the problem, research the audience, and shape the right solution together with our clients. Our process is transparent, iterative, and focused on long-term success — not just quick wins.",
+  'We keep the process straightforward: clear scope, realistic priorities, visible progress, and direct communication throughout the project.',
 
-  "Today, we continue to evolve — learning from every project, every collaboration, and every user insight. For us, design and development aren't just services — they're ways to make technology feel more human.Before writing a single line of code, we take time to understand the problem, research the audience, and shape the right solution together with the client.",
+  'For us, success is not only launch. It is building something that works well, supports the business, and improves over time.',
 ];
 
 export const SERVICES = [
   {
     id: 1,
     image: '/images/services/services-1.jpg',
-    title: 'Mobile App Design & Development',
+    title: 'Product Discovery',
     description:
-      "Bring your product to users' fingertips. We design intuitive mobile experiences — from UX flows to polished UI — and transform them into high-performance native or hybrid apps that feel fast and natural on any device.",
+      'We clarify goals, user needs, priorities, and scope before development starts.',
   },
   {
     id: 2,
     image: '/images/services/services-2.jpg',
-    title: 'Web Design & Development',
+    title: 'UI/UX Design',
     description:
-      'Modern, adaptive, and lightning-fast web experiences. From marketing websites to full-scale web applications — we craft interfaces that engage users and deliver measurable business impact.',
+      'We design clear flows and interfaces built for usability, consistency, and product goals.',
   },
   {
     id: 3,
     image: '/images/services/services-3.jpg',
-    title: 'Backend & Infrastructure',
+    title: 'Web & Mobile Development',
     description:
-      'Reliable architecture that grows with your product. We build scalable backend systems, ensure seamless integrations, and keep your app fast, secure, and ready for growth.',
+      'We build scalable digital products with clean implementation, strong performance, and reliable foundations.',
+  },
+  {
+    id: 4,
+    image: '/images/services/services-4.jpg',
+    title: 'Support & Refactoring',
+    description:
+      'We improve existing products, fix weak codebases, and continue development with more stability.',
   },
 ];
 
@@ -106,22 +119,16 @@ export const PROCESS_COLUMNS = [
     title: 'To Do',
     tasks: [
       {
+        number: '001',
+        title: 'Discovery & Scope',
+        description:
+          'Clarify business goals, user needs, priorities, and project scope before execution begins.',
+      },
+      {
         number: '002',
-        title: 'Design & Implementation',
+        title: 'UX & Interface Design',
         description:
-          'We create wireframes and interactive prototypes that bring ideas to life. Our UI design focuses on clarity, usability, and emotional connection — ensuring every element serves a clear purpose.',
-      },
-      {
-        number: '003',
-        title: 'Development Process',
-        description:
-          'Our developers turn design into clean, scalable, performance-oriented code. We use modern technologies and best practices to ensure reliability and smooth experiences across platforms.',
-      },
-      {
-        number: '004',
-        title: 'Launch & Growth',
-        description:
-          "We don't just launch — we help your product evolve. After deployment, we monitor performance, collect feedback, and continuously optimize the experience based on real data.",
+          'Shape flows, wireframes, and interface decisions that make the product clear and usable.',
       },
     ],
   },
@@ -130,17 +137,24 @@ export const PROCESS_COLUMNS = [
     title: 'In Progress',
     tasks: [
       {
-        number: '001',
-        title: 'Discovery Process',
+        number: '003',
+        title: 'Development',
         description:
-          'We start with understanding — your business, users, and goals. At this stage, we conduct research, analyze competitors, identify challenges, and define clear success metrics.',
+          'Build the product with maintainable code, regular testing, and a focus on reliability and performance.',
       },
     ],
   },
   {
-    id: 'ready',
-    title: 'Ready',
-    tasks: [],
+    id: 'done',
+    title: 'Done',
+    tasks: [
+      {
+        number: '004',
+        title: 'Launch & Iteration',
+        description:
+          'Ship, review feedback, resolve issues, and continue improving the product after launch.',
+      },
+    ],
   },
 ];
 
@@ -148,27 +162,31 @@ export const MOBILE_PROCESS_DATA = [
   {
     id: 1,
     title: 'Discovery',
-    description: 'We start with understanding — your business, your users, and your goals. At this stage, we dive into research, analyze competitors, identify challenges, and define success metrics. We outline user journeys, collect insights, and build a foundation for design decisions that actually make sense.',
-    icon: '/images/process/discovery-icon.svg'
+    description:
+      'We define goals, user needs, priorities, and scope before design and development begin.',
+    icon: '/images/process/discovery-icon.svg',
   },
   {
     id: 2,
     title: 'Design',
-    description: 'Here, strategy turns into visuals. We create wireframes and interactive prototypes that bring structure and logic to life. Our UI design stage focuses on clarity, usability, and emotional connection — ensuring each element has a purpose. You’ll see your product evolve through iterations, always with your feedback in mind.',
-    icon: '/images/process/design-icon.svg'
+    description:
+      'We shape flows and interfaces focused on clarity, usability, and product direction.',
+    icon: '/images/process/design-icon.svg',
   },
   {
     id: 3,
     title: 'Development',
-    description: 'Our developers turn design into code — clean, scalable, and performance-oriented. We use modern technologies and best practices to ensure reliability and smooth performance across all platforms. Throughout the process, we keep communication open, provide regular updates, and test continuously to catch issues early.',
-    icon: '/images/process/development-icon.svg'
+    description:
+      'We turn approved decisions into working software with maintainable code and steady delivery.',
+    icon: '/images/process/development-icon.svg',
   },
   {
     id: 4,
-    title: 'Launch & Growth',
-    description: 'We don’t just launch — we help your product grow. After deployment, we monitor performance, collect feedback, and optimize the experience based on real data. Our team supports you post-launch — from minor UI improvements to major feature expansions — keeping your product relevant and effective.',
-    icon: '/images/process/launch-icon.svg'
-  }
+    title: 'Launch & Iteration',
+    description:
+      'We launch, review feedback, improve the experience, and support the next stage of growth.',
+    icon: '/images/process/launch-icon.svg',
+  },
 ];
 
 export const REVIEWS = [
@@ -226,9 +244,9 @@ export const PARTNERS = [
   {
     id: 6,
     image: '/images/partners/partner-3.svg',
-  }
+  },
 ];
 
-export const FOOTER_MENU = ['services', 'about', 'contacts', 'reviews'];
+export const FOOTER_MENU = ['about', 'services', 'process', 'contacts'];
 
-export const MODAL_FORM = './images/modal/modal-picture.jpg'
+export const MODAL_FORM = '/images/modal/modal-picture.jpg';
