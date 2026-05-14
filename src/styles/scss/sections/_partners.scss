@@ -1,29 +1,105 @@
 @use '../helpers/index' as *;
 
 .partners-slider {
+  --partners-logo-width: 160px;
+  --partners-logo-height: 32px;
+  --partners-logo-gap: 56px;
+  --partners-logo-max-height: 20px;
+  --partners-marquee-duration: 26s;
+
   overflow: hidden;
   width: 100%;
   border-top: var(--border-line);
   border-bottom: var(--border-line);
   background-color: var(--color-gray-90);
   backdrop-filter: blur(50px);
-  padding: 32px;
+  padding: 32px 0;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 96px;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--color-gray-90), transparent);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--color-gray-90), transparent);
+  }
 
   &-track {
     display: flex;
     align-items: center;
+    width: max-content;
+    animation: partners-marquee var(--partners-marquee-duration) linear infinite;
+    will-change: transform;
+  }
+
+  &-group {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    gap: var(--partners-logo-gap);
+    padding-right: var(--partners-logo-gap);
   }
 
   &-item {
-    flex-shrink: 0;
-    margin-right: 80px;
+    flex: 0 0 var(--partners-logo-width);
+    width: var(--partners-logo-width);
+    height: var(--partners-logo-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     img {
-      height: 20px;
+      max-width: 100%;
+      max-height: var(--partners-logo-max-height);
       object-fit: contain;
       display: block;
+      user-select: none;
+      pointer-events: none;
     }
   }
 }
 
+@keyframes partners-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
 
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .partners-slider {
+    --partners-logo-width: 128px;
+    --partners-logo-gap: 40px;
+    --partners-marquee-duration: 22s;
+
+    padding: 24px 0;
+
+    &::before,
+    &::after {
+      width: 56px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partners-slider-track {
+    animation: none;
+    transform: none;
+  }
+}

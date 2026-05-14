@@ -25,10 +25,11 @@ npm run build    # production build → /dist
 | React 18 | UI |
 | Webpack 5 | Bundler (pure JS, no native binaries) |
 | Babel | JSX + modern JS transpilation |
-| GSAP 3 | Animations |
+| GSAP 3 | Component and interaction animations |
 | Swiper 11 | Services carousel |
+| CSS keyframes | Partners logo marquee |
 
-## GSAP Animations
+## Animation System
 
 | Component | What animates |
 |-----------|--------------|
@@ -44,6 +45,10 @@ npm run build    # production build → /dist
 | TaskCard | Hover: lift + number badge bounces |
 | Reviews | Cards slide in from right on scroll |
 | ReviewCard | Hover lift; click pulses quote icon |
-| Partners | GSAP infinite marquee |
+| Partners | CSS marquee with duplicated logo groups for seamless motion |
 | Footer | Logo → contacts → menu → copyright stagger on scroll |
 | SliderButton | Press/release spring: scale down + back.out on release |
+
+## Partner Logos
+
+Partner/client logos are managed from the `PARTNERS` data source. Add each real logo once in data. The Partners component duplicates the source list at render time to create a seamless marquee loop.
