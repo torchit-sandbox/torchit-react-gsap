@@ -1,7 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { prefersReducedMotion } from '../../utils/motion';
 
-function isVideoSrc(src = '') {
+function getMediaSrc(media) {
+  return typeof media === 'string' ? media : media?.desktop;
+}
+
+function isVideoSrc(media) {
+  const src = getMediaSrc(media) || '';
   return /\.(mp4|webm|ogg)$/i.test(src);
 }
 
@@ -34,22 +40,34 @@ function getPosterSrc(src = '') {
   return undefined;
 }
 
-export function HeroSlide({ src, isActive }) {
+export function HeroSlide({ media, src, isActive, isPriority = false }) {
   const mediaRef = useRef(null);
   const wasActive = useRef(false);
-  const isVideo = isVideoSrc(src);
+  const resolvedMedia = media ?? src;
+  const video = isVideoSrc(resolvedMedia);
 
   useEffect(() => {
     if (!mediaRef.current) return;
 
+    if (prefersReducedMotion()) {
+      gsap.set(mediaRef.current, { opacity: isActive ? 1 : 0, scale: 1 });
+
+      if (video && !isActive) {
+        mediaRef.current.pause();
+      }
+
+      wasActive.current = isActive;
+      return;
+    }
+
     if (isActive) {
       gsap.fromTo(
         mediaRef.current,
-        { opacity: 0, scale: 1.06 },
+        { opacity: 0, scale: 1.035 },
         { opacity: 1, scale: 1, duration: 1.1, ease: 'power2.inOut' }
       );
 
-      if (isVideo) {
+      if (video) {
         mediaRef.current.currentTime = 0;
         const playPromise = mediaRef.current.play();
         if (playPromise?.catch) {
@@ -59,7 +77,7 @@ export function HeroSlide({ src, isActive }) {
 
       wasActive.current = true;
     } else if (wasActive.current) {
-      if (isVideo) {
+      if (video) {
         mediaRef.current.pause();
       }
 
@@ -70,11 +88,12 @@ export function HeroSlide({ src, isActive }) {
       });
       wasActive.current = false;
     }
-  }, [isActive, isVideo]);
+  }, [isActive, video]);
 
-  if (isVideo) {
-    const sources = getVideoSources(src);
-    const poster = getPosterSrc(src);
+  if (video) {
+    const videoSrc = getMediaSrc(resolvedMedia);
+    const sources = getVideoSources(videoSrc);
+    const poster = getPosterSrc(videoSrc);
 
     return (
       <video
@@ -95,15 +114,44 @@ export function HeroSlide({ src, isActive }) {
     );
   }
 
+  if (typeof resolvedMedia === 'object') {
+    return (
+      <picture>
+        {resolvedMedia.mobile && (
+          <source media="(max-width: 767px)" srcSet={resolvedMedia.mobile} />
+        )}
+        {resolvedMedia.desktop && (
+          <source media="(min-width: 768px)" srcSet={resolvedMedia.desktop} />
+        )}
+        <img
+          ref={mediaRef}
+          className="hero__bg"
+          src={resolvedMedia.desktop || resolvedMedia.mobile}
+          width={resolvedMedia.desktopWidth || 1408}
+          height={resolvedMedia.desktopHeight || 682}
+          alt=""
+          aria-hidden="true"
+          loading={isPriority ? 'eager' : 'lazy'}
+          fetchPriority={isPriority ? 'high' : 'auto'}
+          decoding={isPriority ? 'sync' : 'async'}
+          style={{ opacity: isActive ? undefined : 0 }}
+        />
+      </picture>
+    );
+  }
+
   return (
     <img
       ref={mediaRef}
       className="hero__bg"
-      src={src}
+      src={resolvedMedia}
       width="1408"
       height="682"
       alt=""
       aria-hidden="true"
+      loading={isPriority ? 'eager' : 'lazy'}
+      fetchPriority={isPriority ? 'high' : 'auto'}
+      decoding={isPriority ? 'sync' : 'async'}
       style={{ opacity: isActive ? undefined : 0 }}
     />
   );
