@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Header,
   Hero,
@@ -9,12 +10,18 @@ import {
   Footer,
   CustomCursor
 } from './components';
+import { ContactModal } from './components/СontactModal';
 
 export default function App() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openContactModal = () => setModalOpen(true);
+  const closeContactModal = () => setModalOpen(false);
+
   return (
     <>
       <CustomCursor /> 
-      <Header />
+      <Header onOpenContact={openContactModal} />
       <main className="main">
         <Hero />
         <About />
@@ -23,7 +30,10 @@ export default function App() {
         <Reviews />
         <Partners />
       </main>
-      <Footer />
+      <Footer onOpenContact={openContactModal} />
+      {modalOpen && (
+        <ContactModal onClose={closeContactModal} />
+      )}
     </>
   );
 }
