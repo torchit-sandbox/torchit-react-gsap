@@ -74,7 +74,6 @@ module.exports = (env, argv) => {
         template: './index.html',
       }),
       new CopyPublicAssetsPlugin([
-        { from: 'public/assets', to: 'assets' },
         { from: 'public/images', to: 'images' },
       ]),
     ],
