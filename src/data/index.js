@@ -258,7 +258,6 @@ export const FOOTER_MENU = [
   { name: 'About', href: '#about-us' },
   { name: 'Services', href: '#services' },
   { name: 'Process', href: '#process' },
-  { name: 'Contact', href: '#contact', pending: true },
 ];
 
 export const MODAL_FORM = '/images/modal/modal-picture.jpg';
