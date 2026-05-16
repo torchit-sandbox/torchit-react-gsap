@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Footer({ onOpenContact }) {
   const footerRef = useRef(null);
+  const footerLinks = FOOTER_MENU.filter((item) => !item.pending);
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
@@ -89,15 +90,9 @@ export function Footer({ onOpenContact }) {
 
           <nav className="footer__nav" aria-label="Footer navigation">
             <ul className="footer__menu">
-              {FOOTER_MENU.map((item) => (
+              {footerLinks.map((item) => (
                 <li key={item.name} className="footer__menu-item">
-                  {item.pending ? (
-                    <span className="footer__menu-link footer__menu-link--pending" aria-label={`${item.name} link pending`}>
-                      {item.name} <span aria-hidden="true">/ pending</span>
-                    </span>
-                  ) : (
-                    <a href={item.href} className="footer__menu-link">{item.name}</a>
-                  )}
+                  <a href={item.href} className="footer__menu-link">{item.name}</a>
                 </li>
               ))}
             </ul>
@@ -105,7 +100,7 @@ export function Footer({ onOpenContact }) {
         </div>
 
         <div className="footer__cta-row">
-          <p className="footer__cta-copy">Have a product to clarify, build, or improve?</p>
+          <p className="footer__cta-copy">Ready to clarify, build, or improve your product?</p>
           <button
             className="footer__cta button button--yellow"
             type="button"
