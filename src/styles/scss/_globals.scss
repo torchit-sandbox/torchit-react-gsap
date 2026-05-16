@@ -35,11 +35,11 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-  background-size: 120px 120px;
-  mask-image: radial-gradient(circle at 50% 0%, black, transparent 68%);
-  opacity: 0.2;
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 160px 160px;
+  mask-image: radial-gradient(circle at 50% 0%, black, transparent 58%);
+  opacity: 0.08;
 }
 
 h1, .h1,
