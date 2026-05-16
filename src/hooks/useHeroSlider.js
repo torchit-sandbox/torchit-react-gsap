@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { prefersReducedMotion } from '../utils/motion';
 
 const DURATION = 5000;
 const STEP = 50;
@@ -12,7 +13,7 @@ export function useHeroSlider(count) {
 
   const startTimer = useCallback(() => {
     clearInterval(timerRef.current);
-    if (isPaused) return;
+    if (isPaused || prefersReducedMotion()) return;
 
     timerRef.current = setInterval(() => {
       progressRef.current += (STEP / DURATION) * 100;
