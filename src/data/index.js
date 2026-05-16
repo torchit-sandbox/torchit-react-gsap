@@ -25,8 +25,8 @@ export const HERO_CONTENT = [
   {
     id: 1,
     image: {
-      desktop: '/assets/images/hero/torchit-hero-desktop-v1.webp',
-      mobile: '/assets/images/hero/torchit-hero-mobile-v1.webp',
+      desktop: '/images/hero/torchit-hero-desktop-v1.webp',
+      mobile: '/images/hero/torchit-hero-mobile-v1.webp',
       desktopWidth: 1672,
       desktopHeight: 941,
       mobileWidth: 941,
