@@ -24,7 +24,14 @@ export const NAV_LINKS = [
 export const HERO_CONTENT = [
   {
     id: 1,
-    img: '/images/hero/slide-1.webp',
+    image: {
+      desktop: '/assets/images/hero/torchit-hero-desktop-v1.webp',
+      mobile: '/assets/images/hero/torchit-hero-mobile-v1.webp',
+      desktopWidth: 1672,
+      desktopHeight: 941,
+      mobileWidth: 941,
+      mobileHeight: 1672,
+    },
     title: 'Products That Work.',
     description:
       'TorchIT helps startups and growing teams design, build, and improve digital products with clear scope and reliable execution.',
@@ -247,6 +254,11 @@ export const PARTNERS = [
   },
 ];
 
-export const FOOTER_MENU = ['about', 'services', 'process', 'contacts'];
+export const FOOTER_MENU = [
+  { name: 'About', href: '#about-us' },
+  { name: 'Services', href: '#services' },
+  { name: 'Process', href: '#process' },
+  { name: 'Contact', href: '#contact', pending: true },
+];
 
 export const MODAL_FORM = '/images/modal/modal-picture.jpg';
