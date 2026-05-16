@@ -2,13 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { NavMenu } from './NavMenu';
 import { BurgerButton } from './BurgerButton';
-import {ContactModal} from "../СontactModal";
+import { prefersReducedMotion } from '../../utils/motion';
 
-
-
-export function Header() {
+export function Header({ onOpenContact }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(() => {
     if (typeof window === 'undefined') return true;
     return window.matchMedia('(max-width: 1023px)').matches;
@@ -17,6 +14,8 @@ export function Header() {
   const headerRef = useRef(null);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       gsap.from(headerRef.current, {
         y: -60,
@@ -86,7 +85,7 @@ export function Header() {
 
   const handleOpenModal = () => {
     setMenuOpen(false);
-    setModalOpen(true);
+    onOpenContact?.();
   };
 
   useEffect(() => {
@@ -118,10 +117,6 @@ export function Header() {
         />
         <BurgerButton isActive={menuOpen} onClick={toggle} />
       </div>
-
-      {modalOpen && (
-        <ContactModal onClose={() => setModalOpen(false)} />
-      )}
     </header>
   );
 }
