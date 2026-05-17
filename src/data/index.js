@@ -67,7 +67,7 @@ export const HERO_CONTENT = [
   },
   {
     id: 5,
-    img: '/images/hero/slide-5.jpg',
+    img: '/images/hero/torchit-hero-partner-v1.webp',
     title: 'A Reliable Product Team.',
     description:
       'We work closely with founders and teams to reduce wasted effort and keep products moving forward.',
