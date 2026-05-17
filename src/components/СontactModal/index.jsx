@@ -14,7 +14,7 @@ const BUILD_OPTIONS = [
   "Other",
 ];
 
-const TIMING_OPTIONS = ["1", "2", "3", "4"];
+const TIMING_OPTIONS = ["ASAP", "2–4 weeks", "1–3 months", "Flexible / not sure yet"];
 const BUDGET_OPTIONS = ["Under $10k", "$10k–$25k", "$25k–$50k", "Not sure yet"];
 
 const TOTAL_STEPS = 4;
@@ -118,62 +118,69 @@ function RadioOption({label, selected, onClick}) {
   return (
     <button
       type="button"
+      role="radio"
       className={`radio-option ${selected ? "selected" : ""}`}
+      aria-checked={selected}
       onClick={onClick}
-      aria-pressed={selected}
     >
       <span className="radio-circle" aria-hidden="true" />
-      {label}
+      <span className="radio-option__label">{label}</span>
     </button>
+  );
+}
+
+function ChoiceGroup({title, ariaLabel, value, options, onChange}) {
+  return (
+    <fieldset className="radio-group">
+      <legend className="radio-group__label">{title}</legend>
+      <div className="radio-group__options" role="radiogroup" aria-label={ariaLabel}>
+        {options.map((opt) => (
+          <RadioOption
+            key={opt}
+            label={opt}
+            selected={value === opt}
+            onClick={() => onChange(opt)}
+          />
+        ))}
+      </div>
+    </fieldset>
   );
 }
 
 function StepTimeline({control}) {
   return (
-    <>
-      <div className="radio-header" aria-hidden="true">
-        <span>Timing options:</span>
-        <span>Budget ranges:</span>
-      </div>
-      <div className="radio-columns">
-        <Controller
-          name="timing"
-          control={control}
-          defaultValue=""
-          rules={{required: true}}
-          render={({field}) => (
-            <div className="radio-columns__left" role="group" aria-label="Timing options">
-              {TIMING_OPTIONS.map((opt) => (
-                <RadioOption
-                  key={opt}
-                  label={opt}
-                  selected={field.value === opt}
-                  onClick={() => field.onChange(opt)}
-                />
-              ))}
-            </div>
-          )}
-        />
-        <Controller
-          name="budget"
-          control={control}
-          defaultValue=""
-          rules={{required: true}}
-          render={({field}) => (
-            <div className="radio-columns__right" role="group" aria-label="Budget ranges">
-              {BUDGET_OPTIONS.map((opt) => (
-                <RadioOption
-                  key={opt}
-                  label={opt}
-                  selected={field.value === opt}
-                  onClick={() => field.onChange(opt)}
-                />
-              ))}
-            </div>
-          )}
-        />
-      </div>
-    </>
+    <div className="radio-columns">
+      <Controller
+        name="timing"
+        control={control}
+        defaultValue=""
+        rules={{required: true}}
+        render={({field}) => (
+          <ChoiceGroup
+            title="Timeline"
+            ariaLabel="Timeline"
+            value={field.value}
+            options={TIMING_OPTIONS}
+            onChange={field.onChange}
+          />
+        )}
+      />
+      <Controller
+        name="budget"
+        control={control}
+        defaultValue=""
+        rules={{required: true}}
+        render={({field}) => (
+          <ChoiceGroup
+            title="Budget"
+            ariaLabel="Budget"
+            value={field.value}
+            options={BUDGET_OPTIONS}
+            onChange={field.onChange}
+          />
+        )}
+      />
+    </div>
   );
 }
 
