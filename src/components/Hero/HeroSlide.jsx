@@ -47,13 +47,21 @@ export function HeroSlide({ media, src, isActive, isPriority = false }) {
   const video = isVideoSrc(resolvedMedia);
 
   useEffect(() => {
-    if (!mediaRef.current) return;
+    const node = mediaRef.current;
+    if (!node) return;
+
+    gsap.killTweensOf(node);
 
     if (prefersReducedMotion()) {
-      gsap.set(mediaRef.current, { opacity: isActive ? 1 : 0, scale: 1 });
+      gsap.set(node, {
+        opacity: isActive ? 1 : 0,
+        scale: 1,
+        zIndex: isActive ? 1 : 0,
+        pointerEvents: isActive ? 'auto' : 'none',
+      });
 
       if (video && !isActive) {
-        mediaRef.current.pause();
+        node.pause();
       }
 
       wasActive.current = isActive;
@@ -61,30 +69,38 @@ export function HeroSlide({ media, src, isActive, isPriority = false }) {
     }
 
     if (isActive) {
+      gsap.set(node, {
+        zIndex: 1,
+        pointerEvents: 'auto',
+      });
       gsap.fromTo(
-        mediaRef.current,
+        node,
         { opacity: 0, scale: 1.035 },
-        { opacity: 1, scale: 1, duration: 1.1, ease: 'power2.inOut' }
+        { opacity: 1, scale: 1, duration: 0.8, ease: 'power2.out' }
       );
 
       if (video) {
-        mediaRef.current.currentTime = 0;
-        const playPromise = mediaRef.current.play();
+        node.currentTime = 0;
+        const playPromise = node.play();
         if (playPromise?.catch) {
           playPromise.catch(() => {});
         }
       }
 
       wasActive.current = true;
-    } else if (wasActive.current) {
+    } else {
       if (video) {
-        mediaRef.current.pause();
+        node.pause();
       }
 
-      gsap.to(mediaRef.current, {
+      gsap.set(node, { pointerEvents: 'none', zIndex: 0 });
+      gsap.to(node, {
         opacity: 0,
-        duration: 0.5,
-        ease: 'power1.in',
+        duration: wasActive.current ? 0.35 : 0,
+        ease: 'power1.out',
+        onComplete: () => {
+          gsap.set(node, { opacity: 0, scale: 1 });
+        },
       });
       wasActive.current = false;
     }
@@ -105,7 +121,11 @@ export function HeroSlide({ media, src, isActive, isPriority = false }) {
         preload="metadata"
         poster={poster}
         aria-hidden="true"
-        style={{ opacity: isActive ? undefined : 0 }}
+        style={{
+          opacity: isActive ? undefined : 0,
+          zIndex: isActive ? 1 : 0,
+          pointerEvents: isActive ? 'auto' : 'none',
+        }}
       >
         {sources.map((source) => (
           <source key={source.src} src={source.src} type={source.type} />
@@ -134,7 +154,11 @@ export function HeroSlide({ media, src, isActive, isPriority = false }) {
           loading={isPriority ? 'eager' : 'lazy'}
           fetchPriority={isPriority ? 'high' : 'auto'}
           decoding={isPriority ? 'sync' : 'async'}
-          style={{ opacity: isActive ? undefined : 0 }}
+          style={{
+            opacity: isActive ? undefined : 0,
+            zIndex: isActive ? 1 : 0,
+            pointerEvents: isActive ? 'auto' : 'none',
+          }}
         />
       </picture>
     );
@@ -152,7 +176,11 @@ export function HeroSlide({ media, src, isActive, isPriority = false }) {
       loading={isPriority ? 'eager' : 'lazy'}
       fetchPriority={isPriority ? 'high' : 'auto'}
       decoding={isPriority ? 'sync' : 'async'}
-      style={{ opacity: isActive ? undefined : 0 }}
+      style={{
+        opacity: isActive ? undefined : 0,
+        zIndex: isActive ? 1 : 0,
+        pointerEvents: isActive ? 'auto' : 'none',
+      }}
     />
   );
 }
