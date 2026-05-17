@@ -58,7 +58,7 @@ export const HERO_CONTENT = [
   },
   {
     id: 4,
-    img: '/images/hero/slide-4.webp',
+    img: '/images/hero/torchit-hero-process-v1.webp',
     title: 'Clear Process. Predictable Delivery.',
     description:
       'Structured stages, visible progress, and direct communication keep projects under control.',
