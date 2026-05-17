@@ -72,7 +72,7 @@ export const HERO_CONTENT = [
     description:
       'We work closely with founders and teams to reduce wasted effort and keep products moving forward.',
     tab: 'Partner',
-    anchor: '#about-us',
+    anchor: '#partners',
   },
 ];
 
