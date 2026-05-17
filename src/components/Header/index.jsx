@@ -12,6 +12,8 @@ export function Header({ onOpenContact }) {
   });
   const [showNavLinks, setShowNavLinks] = useState(true);
   const headerRef = useRef(null);
+  const contactButtonRef = useRef(null);
+  const burgerButtonRef = useRef(null);
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
@@ -83,9 +85,10 @@ export function Header({ onOpenContact }) {
   const toggle = () => setMenuOpen((v) => !v);
   const closeMenu = () => setMenuOpen(false);
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (event) => {
+    const triggerElement = event?.currentTarget ?? contactButtonRef.current ?? burgerButtonRef.current;
     setMenuOpen(false);
-    onOpenContact?.();
+    onOpenContact?.(triggerElement);
   };
 
   useEffect(() => {
@@ -114,8 +117,9 @@ export function Header({ onOpenContact }) {
           showLinks={showNavLinks}
           onContactClick={handleOpenModal}
           onClose={closeMenu}
+          contactButtonRef={contactButtonRef}
         />
-        <BurgerButton isActive={menuOpen} onClick={toggle} />
+        <BurgerButton ref={burgerButtonRef} isActive={menuOpen} onClick={toggle} />
       </div>
     </header>
   );
