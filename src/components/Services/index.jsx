@@ -8,7 +8,7 @@ import {ServiceCard} from './ServiceCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SLIDES = [...SERVICES, ...SERVICES];
+const SLIDES = SERVICES;
 
 export function Services() {
   const {swiperRef, progress} = useSwiper({

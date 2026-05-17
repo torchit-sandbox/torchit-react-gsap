@@ -24,7 +24,14 @@ export const NAV_LINKS = [
 export const HERO_CONTENT = [
   {
     id: 1,
-    img: '/images/hero/slide-1.webp',
+    image: {
+      desktop: '/images/hero/torchit-hero-desktop-v1.webp',
+      mobile: '/images/hero/torchit-hero-mobile-v1.webp',
+      desktopWidth: 1672,
+      desktopHeight: 941,
+      mobileWidth: 941,
+      mobileHeight: 1672,
+    },
     title: 'Products That Work.',
     description:
       'TorchIT helps startups and growing teams design, build, and improve digital products with clear scope and reliable execution.',
@@ -33,7 +40,7 @@ export const HERO_CONTENT = [
   },
   {
     id: 2,
-    img: '/images/hero/slide-2.webp',
+    img: '/images/hero/torchit-hero-build-v1.webp',
     title: 'From Idea to Launch.',
     description:
       'We define priorities, shape user experience, and build the right foundation from the start.',
@@ -51,7 +58,7 @@ export const HERO_CONTENT = [
   },
   {
     id: 4,
-    img: '/images/hero/slide-4.webp',
+    img: '/images/hero/torchit-hero-process-v1.webp',
     title: 'Clear Process. Predictable Delivery.',
     description:
       'Structured stages, visible progress, and direct communication keep projects under control.',
@@ -60,12 +67,12 @@ export const HERO_CONTENT = [
   },
   {
     id: 5,
-    img: '/images/hero/slide-5.jpg',
+    img: '/images/hero/torchit-hero-partner-v1.webp',
     title: 'A Reliable Product Team.',
     description:
       'We work closely with founders and teams to reduce wasted effort and keep products moving forward.',
     tab: 'Partner',
-    anchor: '#about-us',
+    anchor: '#reviews',
   },
 ];
 
@@ -85,28 +92,28 @@ export const ABOUT_PARAGRAPHS = [
 export const SERVICES = [
   {
     id: 1,
-    image: '/images/services/services-1.jpg',
+    image: '/images/services/services-product-discovery-v1.webp',
     title: 'Product Discovery',
     description:
       'We clarify goals, user needs, priorities, and scope before development starts.',
   },
   {
     id: 2,
-    image: '/images/services/services-2.jpg',
+    image: '/images/services/services-ui-ux-design-v1.webp',
     title: 'UI/UX Design',
     description:
       'We design clear flows and interfaces built for usability, consistency, and product goals.',
   },
   {
     id: 3,
-    image: '/images/services/services-3.jpg',
+    image: '/images/services/services-web-mobile-development-v1.webp',
     title: 'Web & Mobile Development',
     description:
       'We build scalable digital products with clean implementation, strong performance, and reliable foundations.',
   },
   {
     id: 4,
-    image: '/images/services/services-4.jpg',
+    image: '/images/services/services-support-refactoring-v1.webp',
     title: 'Support & Refactoring',
     description:
       'We improve existing products, fix weak codebases, and continue development with more stability.',
@@ -247,6 +254,10 @@ export const PARTNERS = [
   },
 ];
 
-export const FOOTER_MENU = ['about', 'services', 'process', 'contacts'];
+export const FOOTER_MENU = [
+  { name: 'About', href: '#about-us' },
+  { name: 'Services', href: '#services' },
+  { name: 'Process', href: '#process' },
+];
 
 export const MODAL_FORM = '/images/modal/modal-picture.jpg';

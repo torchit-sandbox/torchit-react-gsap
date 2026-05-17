@@ -5,6 +5,7 @@ import { useHeroSlider } from '../../hooks';
 import { SliderButton } from '../UI';
 import { HeroSlide } from './HeroSlide';
 import { HeroTabs } from './HeroTabs';
+import { prefersReducedMotion } from '../../utils/motion';
 
 export function Hero() {
   const { current, progress, next, prev, jumpTo, setIsPaused } = useHeroSlider(HERO_CONTENT.length);
@@ -12,23 +13,25 @@ export function Hero() {
 
   // ── Hero entrance — staggered content reveal ─────────────────────────────
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.9 }); // after header finishes
 
       tl.from('.hero__inner', {
         opacity: 0,
-        scale: 0.97,
+        scale: 0.98,
         duration: 1.1,
         ease: 'power2.out',
       })
         .from('.hero__info-title', {
-          y: 60,
+          y: 48,
           opacity: 0,
           duration: 0.9,
           ease: 'power3.out',
         }, '-=0.7')
         .from('.hero__info-subtitle', {
-          y: 30,
+          y: 24,
           opacity: 0,
           duration: 0.75,
           ease: 'power2.out',
@@ -40,7 +43,7 @@ export function Hero() {
           ease: 'power2.out',
         }, '-=0.5')
         .from('.hero__tabs-item', {
-          y: 24,
+          y: 20,
           opacity: 0,
           duration: 0.55,
           ease: 'power2.out',
@@ -54,9 +57,14 @@ export function Hero() {
   return (
     <section ref={heroRef} className="hero container-big" aria-labelledby="hero-title">
       <div className="hero__inner">
-        <a className="hero__bg-link" href={HERO_CONTENT[current].anchor}>
+        <a className="hero__bg-link" href={HERO_CONTENT[current].anchor} aria-label={HERO_CONTENT[current].title}>
           {HERO_CONTENT.map((slide, i) => (
-            <HeroSlide key={slide.id} src={slide.img} isActive={i === current} />
+            <HeroSlide
+              key={slide.id}
+              media={slide.image ?? slide.img}
+              isActive={i === current}
+              isPriority={i === 0}
+            />
           ))}
         </a>
 

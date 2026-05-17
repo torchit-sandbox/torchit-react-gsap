@@ -1,5 +1,26 @@
+const fs = require('fs');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+class CopyPublicAssetsPlugin {
+  constructor(entries) {
+    this.entries = entries;
+  }
+
+  apply(compiler) {
+    compiler.hooks.afterEmit.tap('CopyPublicAssetsPlugin', () => {
+      this.entries.forEach(({ from, to }) => {
+        const source = path.resolve(compiler.context, from);
+        const destination = path.resolve(compiler.options.output.path, to);
+
+        if (!fs.existsSync(source)) return;
+
+        fs.mkdirSync(path.dirname(destination), { recursive: true });
+        fs.cpSync(source, destination, { recursive: true });
+      });
+    });
+  }
+}
 
 module.exports = (env, argv) => {
   const isDev = argv.mode === 'development';
@@ -52,6 +73,9 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: './index.html',
       }),
+      new CopyPublicAssetsPlugin([
+        { from: 'public/images', to: 'images' },
+      ]),
     ],
 
     devServer: isDev

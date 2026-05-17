@@ -18,11 +18,44 @@
     --min-height: 450px;
   }
 
+  @include mobile {
+    height: min(900px, calc(100svh - 16px));
+    min-height: 640px;
+  }
+
   &__inner {
     position: relative;
     height: 100%;
     min-height: var(--min-height);
     margin-inline: 16px;
+    isolation: isolate;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--border-radius);
+      pointer-events: none;
+    }
+
+    &::before {
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(8, 10, 13, 0.78) 0%, rgba(8, 10, 13, 0.42) 42%, rgba(8, 10, 13, 0.12) 100%),
+        radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.12), transparent 26rem),
+        radial-gradient(circle at 74% 74%, rgba(243, 201, 1, 0.08), transparent 22rem);
+    }
+
+    &::after {
+      z-index: 3;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.24);
+    }
+  }
+
+  picture {
+    display: contents;
   }
 
   &__bg {
@@ -31,13 +64,18 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     border-radius: var(--border-radius);
-    z-index: -1;
-    filter: brightness(70%);
+    z-index: 0;
+    filter: brightness(78%);
     opacity: 0;
     transition-property: opacity;
     transition-timing-function: ease-in-out;
     transition-duration: var(--transition-duration);
+
+    @include mobile {
+      object-position: center bottom;
+    }
 
     &.active {
       opacity: 1;
@@ -46,13 +84,14 @@
     &-link {
       position: absolute;
       inset: 0;
+      z-index: 0;
       display: block;
     }
   }
 
   &__content {
     position: relative;
-    z-index: 2;
+    z-index: 4;
     padding: 144px 48px 32px 48px;
     min-height: var(--min-height);
     height: 100%;
@@ -70,6 +109,10 @@
       padding: 110px 24px 16px 24px;
       max-width: none;
     }
+
+    @include mobile {
+      padding-top: 124px;
+    }
   }
 
   &__info {
@@ -79,6 +122,11 @@
     gap: 12px;
 
     color: var(--color-white);
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.42);
+  }
+
+  &__info-subtitle {
+    color: rgba(255, 255, 255, 0.86);
   }
 
   &__tabs {

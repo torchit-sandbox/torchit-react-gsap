@@ -7,6 +7,7 @@ html {
 }
 
 main {
+  position: relative;
   flex-grow: 1;
   overflow-x: clip;
 }
@@ -23,7 +24,22 @@ body {
   min-height: 100vh;
 
   min-width: var(--mobile-width);
+  background: var(--background-page);
   background-color: var(--color-gray-100);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 160px 160px;
+  mask-image: radial-gradient(circle at 50% 0%, black, transparent 58%);
+  opacity: 0.08;
 }
 
 h1, .h1,
@@ -61,6 +77,7 @@ h5, .h5 {
 }
 
 section {
+  position: relative;
   padding-top: var(--section-padding-y);
 
   &:first-child {
@@ -80,15 +97,15 @@ section {
 
 [id] {
   @include tablet-above {
-    scroll-margin-top: -50px;
+    scroll-margin-top: 120px;
   }
 
   @include mobile {
-    scroll-margin-top: 20px;
+    scroll-margin-top: 96px;
   }
 
   @include mobile-l {
-    scroll-margin-top: 70px;
+    scroll-margin-top: 104px;
   }
 
 }
@@ -117,4 +134,15 @@ a {
 
 :focus-visible {
   @include focus-visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

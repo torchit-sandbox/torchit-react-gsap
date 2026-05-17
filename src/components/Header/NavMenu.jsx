@@ -1,6 +1,6 @@
 import { NAV_LINKS } from '../../data';
 
-export function NavMenu({ isOpen, showLinks = true, onContactClick, onClose }) {
+export function NavMenu({ isOpen, showLinks = true, onContactClick, onClose, contactButtonRef }) {
   const shouldRenderLinks = showLinks || isOpen;
 
   const handleLinkClick = () => {
@@ -25,6 +25,7 @@ export function NavMenu({ isOpen, showLinks = true, onContactClick, onClose }) {
         </nav>
       )}
       <button
+        ref={contactButtonRef}
         className="header__button button button--white"
         type="button"
         onClick={onContactClick}

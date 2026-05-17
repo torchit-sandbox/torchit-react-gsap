@@ -46,7 +46,7 @@ export function AboutContent({ isExpanded, onToggle }) {
       <img
         ref={pictureRef}
         className="about-us__content-picture"
-        src="/images/about-us/content-1.jpg"
+        src="/images/about-us/about-editorial-product-team-v1.webp"
         alt=""
         width="742"
         height="448"

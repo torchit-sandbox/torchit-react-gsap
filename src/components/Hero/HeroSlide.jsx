@@ -1,7 +1,16 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { prefersReducedMotion } from '../../utils/motion';
 
-function isVideoSrc(src = '') {
+const ACTIVE_MEDIA_Z_INDEX = 0;
+const INACTIVE_MEDIA_Z_INDEX = -1;
+
+function getMediaSrc(media) {
+  return typeof media === 'string' ? media : media?.desktop;
+}
+
+function isVideoSrc(media) {
+  const src = getMediaSrc(media) || '';
   return /\.(mp4|webm|ogg)$/i.test(src);
 }
 
@@ -34,47 +43,82 @@ function getPosterSrc(src = '') {
   return undefined;
 }
 
-export function HeroSlide({ src, isActive }) {
+export function HeroSlide({ media, src, isActive, isPriority = false }) {
   const mediaRef = useRef(null);
   const wasActive = useRef(false);
-  const isVideo = isVideoSrc(src);
+  const resolvedMedia = media ?? src;
+  const video = isVideoSrc(resolvedMedia);
 
   useEffect(() => {
-    if (!mediaRef.current) return;
+    const node = mediaRef.current;
+    if (!node) return;
+
+    gsap.killTweensOf(node);
+
+    if (prefersReducedMotion()) {
+      gsap.set(node, {
+        opacity: isActive ? 1 : 0,
+        scale: 1,
+        zIndex: isActive ? ACTIVE_MEDIA_Z_INDEX : INACTIVE_MEDIA_Z_INDEX,
+        pointerEvents: isActive ? 'auto' : 'none',
+      });
+
+      if (video && !isActive) {
+        node.pause();
+      }
+
+      wasActive.current = isActive;
+      return;
+    }
 
     if (isActive) {
+      gsap.set(node, {
+        zIndex: ACTIVE_MEDIA_Z_INDEX,
+        pointerEvents: 'auto',
+      });
       gsap.fromTo(
-        mediaRef.current,
-        { opacity: 0, scale: 1.06 },
-        { opacity: 1, scale: 1, duration: 1.1, ease: 'power2.inOut' }
+        node,
+        { opacity: 0, scale: 1.035 },
+        { opacity: 1, scale: 1, duration: 0.8, ease: 'power2.out' }
       );
 
-      if (isVideo) {
-        mediaRef.current.currentTime = 0;
-        const playPromise = mediaRef.current.play();
+      if (video) {
+        node.currentTime = 0;
+        const playPromise = node.play();
         if (playPromise?.catch) {
           playPromise.catch(() => {});
         }
       }
 
       wasActive.current = true;
-    } else if (wasActive.current) {
-      if (isVideo) {
-        mediaRef.current.pause();
+    } else {
+      if (video) {
+        node.pause();
       }
 
-      gsap.to(mediaRef.current, {
+      gsap.set(node, { pointerEvents: 'none', zIndex: INACTIVE_MEDIA_Z_INDEX });
+      gsap.to(node, {
         opacity: 0,
-        duration: 0.5,
-        ease: 'power1.in',
+        duration: wasActive.current ? 0.35 : 0,
+        ease: 'power1.out',
+        onComplete: () => {
+          gsap.set(node, { opacity: 0, scale: 1, zIndex: INACTIVE_MEDIA_Z_INDEX });
+        },
       });
       wasActive.current = false;
     }
-  }, [isActive, isVideo]);
+  }, [isActive, video]);
 
-  if (isVideo) {
-    const sources = getVideoSources(src);
-    const poster = getPosterSrc(src);
+  const mediaStyle = {
+    opacity: isActive ? undefined : 0,
+    zIndex: isActive ? ACTIVE_MEDIA_Z_INDEX : INACTIVE_MEDIA_Z_INDEX,
+    pointerEvents: isActive ? 'auto' : 'none',
+  };
+
+  if (video) {
+    const videoSrc = getMediaSrc(resolvedMedia);
+    const sources = getVideoSources(videoSrc);
+    const poster = getPosterSrc(videoSrc);
 
     return (
       <video
@@ -86,7 +130,7 @@ export function HeroSlide({ src, isActive }) {
         preload="metadata"
         poster={poster}
         aria-hidden="true"
-        style={{ opacity: isActive ? undefined : 0 }}
+        style={mediaStyle}
       >
         {sources.map((source) => (
           <source key={source.src} src={source.src} type={source.type} />
@@ -95,16 +139,45 @@ export function HeroSlide({ src, isActive }) {
     );
   }
 
+  if (typeof resolvedMedia === 'object') {
+    return (
+      <picture>
+        {resolvedMedia.mobile && (
+          <source media="(max-width: 767px)" srcSet={resolvedMedia.mobile} />
+        )}
+        {resolvedMedia.desktop && (
+          <source media="(min-width: 768px)" srcSet={resolvedMedia.desktop} />
+        )}
+        <img
+          ref={mediaRef}
+          className="hero__bg"
+          src={resolvedMedia.desktop || resolvedMedia.mobile}
+          width={resolvedMedia.desktopWidth || 1408}
+          height={resolvedMedia.desktopHeight || 682}
+          alt=""
+          aria-hidden="true"
+          loading={isPriority ? 'eager' : 'lazy'}
+          fetchPriority={isPriority ? 'high' : 'auto'}
+          decoding={isPriority ? 'sync' : 'async'}
+          style={mediaStyle}
+        />
+      </picture>
+    );
+  }
+
   return (
     <img
       ref={mediaRef}
       className="hero__bg"
-      src={src}
+      src={resolvedMedia}
       width="1408"
       height="682"
       alt=""
       aria-hidden="true"
-      style={{ opacity: isActive ? undefined : 0 }}
+      loading={isPriority ? 'eager' : 'lazy'}
+      fetchPriority={isPriority ? 'high' : 'auto'}
+      decoding={isPriority ? 'sync' : 'async'}
+      style={mediaStyle}
     />
   );
 }
