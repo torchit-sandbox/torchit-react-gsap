@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   Header,
   Hero,
@@ -14,8 +14,13 @@ import { ContactModal } from './components/СontactModal';
 
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
+  const contactTriggerRef = useRef(null);
 
-  const openContactModal = () => setModalOpen(true);
+  const openContactModal = (triggerElement) => {
+    contactTriggerRef.current = triggerElement?.currentTarget ?? triggerElement ?? document.activeElement;
+    setModalOpen(true);
+  };
+
   const closeContactModal = () => setModalOpen(false);
 
   return (
@@ -32,7 +37,10 @@ export default function App() {
       </main>
       <Footer onOpenContact={openContactModal} />
       {modalOpen && (
-        <ContactModal onClose={closeContactModal} />
+        <ContactModal
+          onClose={closeContactModal}
+          returnFocusRef={contactTriggerRef}
+        />
       )}
     </>
   );
