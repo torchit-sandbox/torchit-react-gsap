@@ -13,6 +13,12 @@ export function HeroTabs({ tabs, current, progress, onTabClick, onHover }) {
     window.location.hash = anchor;
   };
 
+  const handleTabKeyDown = (e, index) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    onTabClick(index);
+  };
+
   return (
     <ul className="hero__tabs-list">
       {tabs.map((tab, i) => (
@@ -31,7 +37,7 @@ export function HeroTabs({ tabs, current, progress, onTabClick, onHover }) {
           onMouseLeave={() => onHover(false)}
           role="button"
           tabIndex={0}
-          onKeyDown={(e) => e.key === 'Enter' && onTabClick(i)}
+          onKeyDown={(e) => handleTabKeyDown(e, i)}
           aria-current={i === current ? 'true' : undefined}
         >
           <span>
