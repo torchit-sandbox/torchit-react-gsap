@@ -1,6 +1,9 @@
-export function BurgerButton({ isActive, onClick }) {
+import { forwardRef } from 'react';
+
+export const BurgerButton = forwardRef(function BurgerButton({ isActive, onClick }, ref) {
   return (
     <button
+      ref={ref}
       className={`header__burger-button visible-tablet${isActive ? ' is-active' : ''}`}
       type="button"
       aria-label={isActive ? 'Close menu' : 'Open menu'}
@@ -10,17 +13,19 @@ export function BurgerButton({ isActive, onClick }) {
       <img
         className="header__burger-button-icon header__burger-button-icon--open"
         src="/images/svg/burger-button.png"
-        alt="Open menu"
+        alt=""
+        aria-hidden="true"
         width="40"
         height="40"
       />
       <img
         className="header__burger-button-icon header__burger-button-icon--close"
         src="/images/svg/burger-button-close.svg"
-        alt="Close menu"
+        alt=""
+        aria-hidden="true"
         width="40"
         height="40"
       />
     </button>
   );
-}
+});
