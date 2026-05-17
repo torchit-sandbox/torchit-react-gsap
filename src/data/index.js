@@ -40,7 +40,7 @@ export const HERO_CONTENT = [
   },
   {
     id: 2,
-    img: '/images/hero/slide-2.webp',
+    img: '/images/hero/torchit-hero-build-v1.webp',
     title: 'From Idea to Launch.',
     description:
       'We define priorities, shape user experience, and build the right foundation from the start.',
