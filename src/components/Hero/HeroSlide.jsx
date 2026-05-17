@@ -2,6 +2,9 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { prefersReducedMotion } from '../../utils/motion';
 
+const ACTIVE_MEDIA_Z_INDEX = 0;
+const INACTIVE_MEDIA_Z_INDEX = -1;
+
 function getMediaSrc(media) {
   return typeof media === 'string' ? media : media?.desktop;
 }
@@ -56,7 +59,7 @@ export function HeroSlide({ media, src, isActive, isPriority = false }) {
       gsap.set(node, {
         opacity: isActive ? 1 : 0,
         scale: 1,
-        zIndex: isActive ? 1 : 0,
+        zIndex: isActive ? ACTIVE_MEDIA_Z_INDEX : INACTIVE_MEDIA_Z_INDEX,
         pointerEvents: isActive ? 'auto' : 'none',
       });
 
@@ -70,7 +73,7 @@ export function HeroSlide({ media, src, isActive, isPriority = false }) {
 
     if (isActive) {
       gsap.set(node, {
-        zIndex: 1,
+        zIndex: ACTIVE_MEDIA_Z_INDEX,
         pointerEvents: 'auto',
       });
       gsap.fromTo(
@@ -93,18 +96,24 @@ export function HeroSlide({ media, src, isActive, isPriority = false }) {
         node.pause();
       }
 
-      gsap.set(node, { pointerEvents: 'none', zIndex: 0 });
+      gsap.set(node, { pointerEvents: 'none', zIndex: INACTIVE_MEDIA_Z_INDEX });
       gsap.to(node, {
         opacity: 0,
         duration: wasActive.current ? 0.35 : 0,
         ease: 'power1.out',
         onComplete: () => {
-          gsap.set(node, { opacity: 0, scale: 1 });
+          gsap.set(node, { opacity: 0, scale: 1, zIndex: INACTIVE_MEDIA_Z_INDEX });
         },
       });
       wasActive.current = false;
     }
   }, [isActive, video]);
+
+  const mediaStyle = {
+    opacity: isActive ? undefined : 0,
+    zIndex: isActive ? ACTIVE_MEDIA_Z_INDEX : INACTIVE_MEDIA_Z_INDEX,
+    pointerEvents: isActive ? 'auto' : 'none',
+  };
 
   if (video) {
     const videoSrc = getMediaSrc(resolvedMedia);
@@ -121,11 +130,7 @@ export function HeroSlide({ media, src, isActive, isPriority = false }) {
         preload="metadata"
         poster={poster}
         aria-hidden="true"
-        style={{
-          opacity: isActive ? undefined : 0,
-          zIndex: isActive ? 1 : 0,
-          pointerEvents: isActive ? 'auto' : 'none',
-        }}
+        style={mediaStyle}
       >
         {sources.map((source) => (
           <source key={source.src} src={source.src} type={source.type} />
@@ -154,11 +159,7 @@ export function HeroSlide({ media, src, isActive, isPriority = false }) {
           loading={isPriority ? 'eager' : 'lazy'}
           fetchPriority={isPriority ? 'high' : 'auto'}
           decoding={isPriority ? 'sync' : 'async'}
-          style={{
-            opacity: isActive ? undefined : 0,
-            zIndex: isActive ? 1 : 0,
-            pointerEvents: isActive ? 'auto' : 'none',
-          }}
+          style={mediaStyle}
         />
       </picture>
     );
@@ -176,11 +177,7 @@ export function HeroSlide({ media, src, isActive, isPriority = false }) {
       loading={isPriority ? 'eager' : 'lazy'}
       fetchPriority={isPriority ? 'high' : 'auto'}
       decoding={isPriority ? 'sync' : 'async'}
-      style={{
-        opacity: isActive ? undefined : 0,
-        zIndex: isActive ? 1 : 0,
-        pointerEvents: isActive ? 'auto' : 'none',
-      }}
+      style={mediaStyle}
     />
   );
 }
