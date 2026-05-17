@@ -92,28 +92,28 @@ export const ABOUT_PARAGRAPHS = [
 export const SERVICES = [
   {
     id: 1,
-    image: '/images/services/services-1.jpg',
+    image: '/images/services/services-product-discovery-v1.webp',
     title: 'Product Discovery',
     description:
       'We clarify goals, user needs, priorities, and scope before development starts.',
   },
   {
     id: 2,
-    image: '/images/services/services-2.jpg',
+    image: '/images/services/services-ui-ux-design-v1.webp',
     title: 'UI/UX Design',
     description:
       'We design clear flows and interfaces built for usability, consistency, and product goals.',
   },
   {
     id: 3,
-    image: '/images/services/services-3.jpg',
+    image: '/images/services/services-web-mobile-development-v1.webp',
     title: 'Web & Mobile Development',
     description:
       'We build scalable digital products with clean implementation, strong performance, and reliable foundations.',
   },
   {
     id: 4,
-    image: '/images/services/services-4.jpg',
+    image: '/images/services/services-support-refactoring-v1.webp',
     title: 'Support & Refactoring',
     description:
       'We improve existing products, fix weak codebases, and continue development with more stability.',
