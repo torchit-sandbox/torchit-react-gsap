@@ -23,7 +23,7 @@ const STEP_TITLES = [
     title: "Let`s connect!",
     subtitle: "Fill in a small form and we`ll contact you back soon."
   },
-  {title: "What can we help you build?", subtitle: "Choose up to two options."},
+  {title: "What can we help you build?", subtitle: "Choose one or more options."},
   {title: "Timeline & budget", subtitle: null},
   {title: "Tell us a bit about you", subtitle: null},
 ];
@@ -77,7 +77,7 @@ function StepBuild({control, watch}) {
                     const cur = field.value || [];
                     if (isSelected) {
                       field.onChange(cur.filter((o) => o !== opt));
-                    } else if (cur.length < 2) {
+                    } else {
                       field.onChange([...cur, opt]);
                     }
                   }}
@@ -209,7 +209,7 @@ function StepAbout({register}) {
 }
 
 // ─── Main Component ───────────────────────────────────────────────────────────
-export function ContactModal({onClose, onSubmit}) {
+export function ContactModal({onClose, onSubmit, returnFocusRef}) {
   const [step, setStep] = useState(1);
   const [animKey, setAnimKey] = useState(0);
   const modalRef = useRef(null);
@@ -230,7 +230,7 @@ export function ContactModal({onClose, onSubmit}) {
   const email = watch("email");
 
   useEffect(() => {
-    previouslyFocusedRef.current = document.activeElement;
+    previouslyFocusedRef.current = returnFocusRef?.current ?? document.activeElement;
     document.documentElement.classList.add('is-lock');
 
     const focusableSelector = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
@@ -268,9 +268,15 @@ export function ContactModal({onClose, onSubmit}) {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.documentElement.classList.remove('is-lock');
-      previouslyFocusedRef.current?.focus?.();
+      const focusTarget = returnFocusRef?.current?.isConnected
+        ? returnFocusRef.current
+        : previouslyFocusedRef.current;
+
+      if (focusTarget?.isConnected) {
+        focusTarget.focus?.();
+      }
     };
-  }, [onClose]);
+  }, [onClose, returnFocusRef]);
 
   const canContinue = useCallback(() => {
     if (step === 1) return !!email && !errors.email;
@@ -308,7 +314,6 @@ export function ContactModal({onClose, onSubmit}) {
         aria-labelledby="contact-modal-title"
         aria-describedby={subtitle ? 'contact-modal-subtitle' : undefined}
       >
-        {/* Left image */}
         <img
           className="modal__image"
           src={MODAL_FORM}
@@ -316,7 +321,6 @@ export function ContactModal({onClose, onSubmit}) {
           aria-hidden="true"
         />
 
-        {/* Close */}
         <button
           className="modal__close"
           type="button"
@@ -339,7 +343,6 @@ export function ContactModal({onClose, onSubmit}) {
           </svg>
         </button>
 
-        {/* Content */}
         <div className="modal__content">
           <div className="modal__info">
             <h3 className="modal__title" id="contact-modal-title">{title}</h3>
