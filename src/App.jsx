@@ -10,7 +10,7 @@ import {
   Footer,
   CustomCursor
 } from './components';
-import { ContactModal } from './components/СontactModal';
+import { ContactModal } from './components/ContactModal';
 
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
